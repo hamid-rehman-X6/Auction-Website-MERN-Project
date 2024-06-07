@@ -27,18 +27,12 @@ To run this project locally, follow these steps:
 1. **Clone the Repository**:
 
 bash
-git clone https://github.com/yourusername/BIDBUY.git
+git clone https://github.com/hamid-rehman-X6/BIDBUY.git
 cd BIDBUY
 
 2. **Install Dependencies**:
-
-bash
-npm install
-cd client
-npm install
-cd ..
-
-3. **Setup Environment Variables**:
+3. 
+4. **Setup Environment Variables**:
    
 Create a .env file in the root directory and add the following:
 
