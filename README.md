@@ -31,7 +31,7 @@ git clone https://github.com/hamid-rehman-X6/BIDBUY.git
 cd BIDBUY
 
 2. **Install Dependencies**:
-3. 
+    
 4. **Setup Environment Variables**:
    
 Create a .env file in the root directory and add the following:
