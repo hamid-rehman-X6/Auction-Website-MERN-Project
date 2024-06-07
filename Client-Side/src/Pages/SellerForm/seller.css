@@ -1,0 +1,78 @@
+.form-container-custom-S {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    border: 1px solid rgb(223, 222, 222);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    background-color: rgba(252, 243, 226, 0.804);
+
+}
+
+h2.custom-heading-S {
+    text-align: center;
+    margin-bottom: 20px;
+    color: rgb(151, 73, 255);
+    font-size: 28px;
+}
+
+/* 
+.seller-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+} */
+
+
+.row.custom-row-S {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.form-group-custom-S {
+    flex: 1 1 300px;
+}
+
+label.custom-label-S {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input.custom-input-S,
+textarea.custom-textarea-S {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-bottom: 14px;
+}
+
+textarea.custom-textarea-S {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.submit-button-custom-S {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+
+}
+
+.submit-button-custom-S:hover {
+    background-color: #45a049;
+
+}
+
+.Errors {
+    color: red;
+    margin-top: -10px;
+}

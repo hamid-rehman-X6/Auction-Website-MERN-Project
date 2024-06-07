@@ -1,0 +1,479 @@
+.main-home-page {
+    margin-top: 50px;
+    animation: fadeInDown 1s ease-in-out;
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.homepage-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.h2-heading-home-title .h2-heading-home-title {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 52px;
+    margin-top: 60px;
+    margin-left: 50px;
+    font-weight: 700;
+    color: rgb(56, 56, 56);
+}
+
+.h2-heading-home-title .bidding-text {
+    color: rgb(151, 73, 255);
+    /* margin-left: 0px; */
+}
+
+.p-tag-home-page p {
+    margin-left: 54px;
+    margin-top: 12px;
+    color: rgb(102, 112, 132);
+    font-size: 18px;
+    font-weight: 500;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+
+.img-2 {
+    width: 600px;
+    height: 500px;
+    margin-top: -60px;
+    margin-right: 50px;
+    animation: moveUpDown 2s ease-in-out infinite;
+}
+
+@keyframes moveUpDown {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+
+.Button-text-div {
+    display: flex;
+    gap: 10px;
+    margin-left: 65px;
+    margin-top: -160px;
+}
+
+.Button-text-div .new-here-home-page {
+    margin-top: 8px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.button {
+    background-color: rgb(156, 87, 245);
+    color: #fff;
+    width: 100px;
+    padding: 6px;
+    border: none;
+    border-radius: 10px;
+    transition: all 0.6s ease;
+    cursor: pointer;
+}
+
+
+.button:hover {
+    background-color: rgb(124, 50, 222);
+}
+
+
+.section-h3 {
+    text-align: center;
+    margin-top: 3%;
+    margin-bottom: 30px;
+    font-size: 38px;
+    font-weight: 500;
+    background-color: #fff;
+}
+
+/* CSS for larger screens */
+@media (min-width: 1200px) {
+    .homepage-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .img-section h1 {
+        font-size: 52px;
+        margin-top: 60px;
+        margin-left: 50px;
+    }
+
+    .img-section p {
+        margin-left: 54px;
+        margin-top: 12px;
+        font-size: 18px;
+    }
+
+    .img-2 {
+        width: 600px;
+        height: 500px;
+        margin-top: -50px;
+        margin-right: 50px;
+    }
+
+    .Button-text-div {
+        display: flex;
+        gap: 10px;
+        margin-left: 65px;
+        margin-top: -160px;
+    }
+
+    .Button-text-div p {
+        margin-top: 8px;
+        font-size: 20px;
+    }
+
+    .button {
+        width: 100px;
+        padding: 6px;
+    }
+
+    .text {
+        font-size: 18px;
+    }
+}
+
+/* CSS for medium screens */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .homepage-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .img-section h1 {
+        font-size: 42px;
+        margin-top: 40px;
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .img-section p {
+        margin-left: 0;
+        margin-top: 10px;
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .img-2 {
+        width: 500px;
+        height: 400px;
+        margin-top: 30px;
+        margin-right: 0;
+    }
+
+    .Button-text-div {
+        display: flex;
+        gap: 10px;
+        margin-left: 0;
+        margin-top: 30px;
+        justify-content: center;
+    }
+
+    .Button-text-div p {
+        margin-top: 6px;
+        font-size: 18px;
+    }
+
+    .button {
+        width: 90px;
+        padding: 5px;
+    }
+
+    .text {
+        font-size: 16px;
+    }
+}
+
+/* CSS for small screens */
+@media (max-width: 767px) {
+    .homepage-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .img-section h1 {
+        font-size: 32px;
+        margin-top: 30px;
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .img-section p {
+        margin-left: 0;
+        margin-top: 8px;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .img-2 {
+        width: 350px;
+        height: 300px;
+        margin-top: 20px;
+        margin-right: 0;
+    }
+
+    .Button-text-div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 0;
+        margin-top: 20px;
+    }
+
+    .Button-text-div p {
+        margin-top: 4px;
+        font-size: 16px;
+    }
+
+    .button {
+        width: 80px;
+        padding: 4px;
+    }
+
+    .text {
+        font-size: 14px;
+    }
+}
+
+
+
+.product-grid-for-homepage {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 80px;
+    width: 90%;
+    margin: 20px 60px;
+    /* margin-left: 70px; */
+}
+
+
+@media (max-width: 768px) {
+    .product-grid-for-homepage {
+        grid-template-columns: repeat(2, 1fr);
+        /* margin: 20px 40px; */
+    }
+
+    .images {
+        height: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-grid-for-homepage {
+        grid-template-columns: 1fr;
+        /* margin: 20px 40px; */
+    }
+
+    .images {
+        height: 200px;
+    }
+}
+
+.show-more-button {
+    display: flex;
+    justify-content: left;
+    margin-top: 20px;
+    margin-bottom: 60px;
+    margin-left: 80px;
+}
+
+.show-more-button button {
+    background-color: #fff;
+    color: rgb(174, 41, 215);
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 700;
+    transition: font-size 0.3s ease;
+}
+
+.show-more-button button:hover {
+    color: rgb(164, 16, 209);
+    font-size: 21px;
+}
+
+@media (max-width: 768px) {
+    .show-more-button button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .show-more-button button {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+}
+
+
+/* new div auction-container text */
+
+.auction-container {
+    background-color: rgb(248, 248, 248);
+    padding: 20px;
+    text-align: center;
+    margin-top: 15%;
+    margin-bottom: 10px;
+}
+
+.auction-container h1 {
+    font-style: italic;
+    margin-bottom: 10px;
+    background-color: rgb(248, 248, 248);
+    font-weight: 500;
+    color: rgb(32, 32, 32);
+}
+
+.auction-container p {
+    line-height: 1.5;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: rgb(248, 248, 248);
+    color: rgb(54, 54, 54);
+}
+
+@media (max-width: 768px) {
+    .auction-container {
+        padding: 10px;
+    }
+
+    .auction-container h1 {
+        font-size: 24px;
+    }
+
+    .auction-container p {
+        font-size: 14px;
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .auction-container h1 {
+        font-size: 20px;
+    }
+
+    .auction-container p {
+        font-size: 12px;
+    }
+}
+
+
+
+/* Auction Documentation Section */
+
+.Section-for-auction-doc-title h3 {
+    background-color: #fff;
+    font-size: 2.2rem;
+    /* font-family: 'Times New Roman', Times, serif; */
+    font-weight: 500;
+    text-align: center;
+}
+
+.auction-documentation {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    margin: 20px 0;
+    animation: fadeInUp 1s ease-in-out;
+}
+
+.doc-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.doc-image {
+    flex: 1;
+    max-width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.img-doc {
+    width: 85%;
+    height: auto;
+    border-radius: 16px;
+}
+
+.doc-content {
+    flex: 1;
+    max-width: 40%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-right: 100px;
+    position: relative;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+
+.doc-content-text {
+    max-height: 300px;
+    /* Match this height to the image height */
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+    text-align: justify;
+}
+
+.doc-content.expanded .doc-content-text {
+    overflow-y: auto;
+}
+
+/* Button Styles */
+.doc-content button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.doc-content button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .doc-container {
+        flex-direction: column;
+    }
+
+    .doc-image,
+    .doc-content {
+        max-width: 100%;
+    }
+}

@@ -1,0 +1,142 @@
+.chat__section {
+    width: 90%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto;
+    height: 75vh;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    padding: 0 10px;
+    /* Add some padding for better spacing on small screens */
+}
+
+.brand {
+    padding: 20px;
+    background-color: #8F8BE8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Center content for better alignment on small screens */
+}
+
+.brand img {
+    margin-right: 10px;
+}
+
+.brand h1 {
+    text-transform: uppercase;
+    font-size: 20px;
+    color: #ffffff;
+    margin: 0;
+}
+
+.message__area {
+    flex-grow: 1;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-top: 40px;
+}
+
+textarea {
+    width: 100%;
+    border: none;
+    padding: 16px;
+    font-size: 16px;
+    margin-bottom: -4px;
+    outline: none;
+    resize: none;
+    overflow: hidden;
+    background-color: #dedede;
+    box-sizing: border-box;
+}
+
+textarea::placeholder {
+    color: #aaa;
+}
+
+.message {
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    max-width: 80%;
+    position: relative;
+}
+
+.message.incoming {
+    background-color: #8F8BE8;
+    color: #f7f7f7;
+}
+
+.message.outgoing {
+    background-color: rgb(209, 255, 255);
+    color: #787986;
+    margin-left: auto;
+}
+
+.message h4 {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    color: #333;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .chat__section {
+        width: 95%;
+        height: 100vh;
+        margin: 0;
+        padding: 0 5px;
+        /* Adjust padding for very small screens */
+    }
+
+    .brand h1 {
+        font-size: 18px;
+    }
+
+    textarea {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .message {
+        padding: 8px;
+        margin-bottom: 15px;
+        max-width: 90%;
+    }
+
+    .message h4 {
+        font-size: 12px;
+        top: -18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .chat__section {
+        height: 100vh;
+    }
+
+    .brand h1 {
+        font-size: 16px;
+    }
+
+    textarea {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    .message {
+        padding: 6px;
+        margin-bottom: 10px;
+        max-width: 95%;
+    }
+
+    .message h4 {
+        font-size: 10px;
+        top: -16px;
+    }
+}

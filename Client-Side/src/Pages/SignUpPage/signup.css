@@ -1,0 +1,124 @@
+.register-container {
+    display: flex;
+    max-width: 900px;
+    margin: 30px auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    animation: zoomIn 0.5s ease-in-out;
+}
+
+@keyframes zoomIn {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.signup-img-form {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(238, 241, 244);
+    padding: 30px;
+}
+
+.signup-img-form img {
+    /* max-width: 100%; */
+    width: 400px;
+    height: auto;
+    background-color: rgb(238, 241, 244);
+}
+
+.register-form {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 40px;
+    background-color: white;
+    border-left: 1px solid #ccc;
+}
+
+.register-container h2 {
+    margin-bottom: 10px;
+    text-align: left;
+    color: rgb(151, 73, 255);
+    background-color: white;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    background-color: white;
+}
+
+.form-group span {
+    display: block;
+    margin-bottom: 6px;
+    background-color: white;
+}
+
+.field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: 0;
+}
+
+.btn-next {
+    background-color: rgb(151, 73, 255);
+    color: #fff;
+    border: none;
+    outline: 0;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.btn-next:hover {
+    color: #fff;
+    background-color: rgba(152, 73, 255, 0.89);
+}
+
+.form-group label {
+    margin-right: 50px;
+    background-color: white;
+}
+
+.form-group label:last-child {
+    margin-right: 0px;
+}
+
+.error-message {
+    background-color: white;
+    color: red;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .register-container {
+        flex-direction: column;
+    }
+
+    .signup-img {
+        order: 2;
+        padding: 20px;
+    }
+
+    .signup-img img {
+        max-width: 200px;
+    }
+
+    .register-form {
+        border-left: none;
+        border-top: 1px solid #ccc;
+    }
+}

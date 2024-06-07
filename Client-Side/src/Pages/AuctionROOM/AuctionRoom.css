@@ -1,0 +1,91 @@
+.auction-room {
+    width: 90%;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f4f4f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.product-details {
+    margin-bottom: 20px;
+}
+
+.product-details h2 {
+    font-size: 24px;
+    color: #4A4A4A;
+}
+
+.product-details p {
+    font-size: 18px;
+    color: #666;
+}
+
+.bid-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bid-section input {
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.bid-section button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.bid-section button:hover {
+    background-color: #45a049;
+}
+
+.timer {
+    text-align: center;
+    font-size: 18px;
+    color: #d9534f;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .auction-room {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .product-details h2 {
+        font-size: 20px;
+    }
+
+    .product-details p {
+        font-size: 16px;
+    }
+
+    .bid-section input,
+    .bid-section button {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .timer {
+        font-size: 16px;
+    }
+}

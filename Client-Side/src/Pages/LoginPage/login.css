@@ -1,0 +1,177 @@
+/* login.css */
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+    animation: zoomIn 0.5s ease-in-out;
+}
+
+@keyframes zoomIn {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.Login-image-logo {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.Login-image-logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+.login-box {
+    flex: 1;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    margin-right: 50px;
+}
+
+.login-box h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: rgb(151, 73, 255);
+    background-color: #fff;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+}
+
+.form-text {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    background-color: #fff;
+}
+
+.text-fields {
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    background-color: #fff;
+}
+
+.password-field {
+    padding-right: 2.5rem;
+    position: relative;
+}
+
+.password-toggle-icon {
+    position: absolute;
+    right: 110px;
+    top: 282px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #999;
+    background-color: #fff;
+}
+
+button[type="submit"] {
+    background-color: rgb(151, 73, 255);
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+button[type="submit"]:hover {
+    background-color: rgb(131, 40, 250);
+}
+
+button[type="submit"]:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.btn-forget {
+    display: block;
+    margin: 0 auto 1rem;
+    background-color: transparent;
+    color: rgb(151, 73, 255);
+    border: none;
+    cursor: pointer;
+}
+
+.btn-forget:hover {
+    color: rgb(118, 34, 228);
+}
+
+#OR-TEXT {
+    display: block;
+    text-align: center;
+    background-color: #fff;
+    width: 40px;
+    margin: auto;
+    font-size: 14px;
+    margin-top: -10px;
+}
+
+.signup-link {
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    display: block;
+    color: rgb(151, 73, 255);
+    background-color: #fff;
+}
+
+.p-tag-for-login-page {
+    background-color: #fff;
+    margin-top: 10px;
+}
+
+.p-tag-for-login-page b {
+    background-color: #fff;
+}
+
+@media (max-width: 768px) {
+    .main {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .Login-image-logo {
+        display: none;
+    }
+
+    .login-box {
+        padding: 1.5rem;
+        max-width: 100%;
+        width: 500px;
+        margin-right: 0;
+        margin-top: 50px;
+    }
+
+    .password-toggle-icon {
+        position: absolute;
+        right: 180px;
+        top: 260px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #999;
+        background-color: #fff;
+    }
+
+}

@@ -1,0 +1,166 @@
+/* navbaar.css */
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.light-mode {
+    background-color: #fff;
+    color: #000;
+}
+
+.dark-mode {
+    background-color: #121212;
+    color: #fff;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+}
+
+.navbar-logo {
+    font-size: 24px;
+    color: #fff;
+    background-color: #333;
+
+}
+
+.navbar-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+
+}
+
+.navbar-link {
+    margin: 0 15px;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: #333;
+
+    transition: color 0.3s;
+}
+
+.navbar-link:hover {
+    color: #ddd;
+}
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    background-color: #333;
+
+}
+
+.navbar-search-icon {
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    margin-right: 20px;
+    transition: color 0.3s;
+    background-color: #333;
+
+}
+
+.navbar-search-icon:hover {
+    color: #ddd;
+}
+
+.navbar-search-input {
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+    margin-right: 20px;
+}
+
+.navbar-account {
+    position: relative;
+}
+
+.navbar-account-button {
+    background-color: #444;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-account-button:hover {
+    background-color: #555;
+}
+
+.navbar-angle-icon {
+    background-color: #333;
+    margin-left: 5px;
+}
+
+.navbar-dropdown {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: #444;
+    border: 1px solid #333;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar-dropdown-item {
+    padding: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    background-color: #333;
+
+}
+
+.navbar-dropdown-item:hover {
+    background-color: #555;
+}
+
+.navbar-dropdown-icon {
+    margin-right: 8px;
+    background-color: #333;
+
+}
+
+.navbar-theme-toggle {
+    color: #fff;
+    background-color: #333;
+    cursor: pointer;
+    font-size: 18px;
+    margin-right: 20px;
+    transition: color 0.3s;
+
+}
+
+.navbar-theme-toggle:hover {
+    color: #ddd;
+    background-color: #333;
+
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar-links {
+        display: none;
+    }
+
+    .navbar-search-input {
+        display: none;
+    }
+}

@@ -1,0 +1,277 @@
+ .loading-div {
+     text-align: center;
+     font-size: 45px;
+     font-family: cursive;
+     margin-top: 150px;
+     margin-bottom: 150px;
+ }
+
+ .product-detail-container {
+     display: flex;
+
+     margin: 40px 0;
+     transition: all 0.3s ease-in-out;
+ }
+
+ .product-image-container {
+     width: 50%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     transition: all 0.3s ease-in-out;
+ }
+
+ .product-image-container>div:first-child {
+     width: 100%;
+     max-width: 500px;
+     margin-bottom: 20px;
+     transition: all 0.3s ease-in-out;
+ }
+
+ .product-image-container>div:first-child img {
+     width: 100%;
+     height: 350px;
+     object-fit: fill;
+     border-radius: 20px;
+     transition: all 0.3s ease-in-out;
+ }
+
+ .product-image-container>div:last-child {
+     display: flex;
+     justify-content: center;
+     gap: 20px;
+     transition: all 0.3s ease-in-out;
+ }
+
+ .product-image-container>div:last-child>div {
+     width: 100px;
+     height: 110px;
+     overflow: hidden;
+     transition: all 0.3s ease-in-out;
+ }
+
+ .product-image-container>div:last-child img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     border-radius: 20px;
+     border: 2px solid rgb(85, 144, 252);
+     transition: all 0.3s ease-in-out;
+ }
+
+ /* ********************************************** */
+ .product-info-container {
+     width: 45%;
+     margin-top: 20px;
+ }
+
+ .seller-info-container {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     margin-bottom: 10px;
+ }
+
+ .start-bidding-btn {
+     background-color: #007bff;
+     color: #fff;
+     border: none;
+     padding: 8px 16px;
+     border-radius: 4px;
+     cursor: pointer;
+ }
+
+ .start-bidding-btn:hover {
+     background-color: #0056b3;
+ }
+
+ .SellerName-product-detail {
+     color: rgb(146, 146, 146);
+     font-family: 'Times New Roman', Times, serif;
+ }
+
+ .category-product-detail {
+     color: rgb(15, 117, 219);
+     margin-bottom: -22px;
+     font-size: 20px;
+ }
+
+ .title-product-detail {
+     margin-top: 25px;
+ }
+
+ .title-product-detail h2 {
+     font-size: 38px;
+     font-family: Georgia, 'Times New Roman', Times, serif;
+     font-weight: bold;
+     /* transition: all 0.3s ease-in-out; */
+ }
+
+ .startingPrice-product-detail .statingPrice-text {
+     color: rgb(118, 116, 116);
+     font-family: 'Times New Roman';
+     margin-top: 1rem;
+
+ }
+
+ .startingPrice-product-detail h1 {
+     margin-top: -2px;
+     /* color: rgb(39, 39, 39); */
+     color: rgb(15, 117, 219);
+     text-align: left;
+
+ }
+
+ .description-product-detail .description-text {
+     text-align: justify;
+     font-size: 15px;
+     color: rgb(118, 116, 116);
+     font-family: 'Times New Roman';
+     margin-top: 1rem;
+ }
+
+ /* ***********for AUCTION START **************** */
+
+ .auction-start-date {
+     display: flex;
+     flex-direction: row;
+     align-items: baseline;
+     gap: 10px;
+ }
+
+ .auction-start-date .auction-S-D-text {
+     margin-top: 20px;
+     color: rgb(43, 43, 43);
+     font-family: 'Times New Roman';
+ }
+
+ .auction-start-date .auction-S-D-date {
+     color: rgb(8, 122, 8);
+     font-weight: 600;
+     font-family: 'Times New Roman';
+ }
+
+ /* ***********for AUCTION END **************** */
+
+ .auction-end-date {
+     display: flex;
+     flex-direction: row;
+     align-items: baseline;
+     gap: 10px;
+ }
+
+ .auction-end-date .auction-E-D-text {
+     color: rgb(43, 43, 43);
+     font-family: 'Times New Roman';
+ }
+
+ .auction-end-date .auction-E-D-date {
+     color: rgb(252, 1, 1);
+     font-weight: 600;
+     font-family: 'Times New Roman';
+     animation: dateAnimation 2s infinite;
+ }
+
+ @keyframes dateAnimation {
+     0% {
+         transform: scale(1);
+     }
+
+     50% {
+         transform: scale(1.1);
+     }
+
+     100% {
+         transform: scale(1);
+     }
+ }
+
+ /* ************************************************** */
+
+ .product-detail-container,
+ .product-image-container,
+ .product-image-container>div:first-child,
+ .product-image-container>div:first-child img,
+ .product-image-container>div:last-child,
+ .product-image-container>div:last-child>div,
+ .product-image-container>div:last-child img,
+ .product-info-container,
+ .product-info-container h2,
+ .product-info-container p,
+ .product-info-container .startingprice {
+     animation: fadeIn 0.5s ease-in-out;
+ }
+
+ @keyframes fadeIn {
+     from {
+         opacity: 0;
+         transform: translateY(20px);
+     }
+
+     to {
+         opacity: 1;
+         transform: translateY(0);
+     }
+ }
+
+ /* ***************************  RESPONSIVE DESGIN     ************************************ */
+
+ @media (max-width: 1050px) {
+
+     .product-detail-container {
+         gap: 20px;
+     }
+
+     .product-info-container {
+         width: 45%;
+     }
+ }
+
+
+
+ @media (max-width: 768px) {
+     .product-detail-container {
+         flex-direction: column;
+         align-items: center;
+     }
+
+     .product-image-container {
+         width: 100%;
+     }
+
+     .product-info-container {
+         width: 70%;
+     }
+
+     .product-image-container>div:first-child {
+         max-width: 400px;
+     }
+
+     .product-image-container>div:last-child>div {
+         width: 80px;
+         height: 80px;
+     }
+ }
+
+ @media (max-width: 480px) {
+     .product-image-container>div:first-child {
+         max-width: 300px;
+     }
+
+     .product-image-container>div:last-child>div {
+         width: 60px;
+         height: 60px;
+     }
+
+     .product-info-container h2 {
+         font-size: 24px;
+     }
+
+     .product-info-container p {
+         font-size: 14px;
+     }
+
+     .product-info-container .startingprice {
+         font-size: 18px;
+     }
+ }

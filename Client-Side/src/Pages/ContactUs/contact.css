@@ -1,0 +1,146 @@
+.ContactForm {
+    display: flex;
+    gap: 50px;
+    max-width: 800px;
+    /* height: 70vh; */
+    margin: 30px auto;
+    padding: 40px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    animation: bounce 1s ease-in-out;
+    transform-origin: center top;
+    transition: all 0.5s ease-in-out;
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-30px);
+    }
+
+    60% {
+        transform: translateY(-15px);
+    }
+}
+
+
+.contact-img {
+    flex: 1;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid #ccc;
+    transition: all 0.5s ease-in-out;
+}
+
+.contact-img img {
+    width: 300px;
+    height: auto;
+    background-color: #f5f5f5;
+    transition: all 0.5s ease-in-out;
+}
+
+.form-text-heading {
+    color: #ae5bfc;
+    background-color: #f5f5f5;
+    font-size: 30px;
+    font-family: cursive;
+    margin-bottom: 10px;
+
+}
+
+.contact-form-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #f5f5f5;
+    transition: all 0.5s ease-in-out;
+}
+
+.ContactForm label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+    background-color: #f5f5f5;
+
+}
+
+.ContactForm input,
+.ContactForm textarea {
+    max-width: 100%;
+    /* width: 100%; */
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    font-size: 16px;
+    /* background-color: #fff; */
+}
+
+.ContactForm textarea {
+    resize: vertical;
+    /* padding: 20px; */
+
+}
+
+.ContactForm input[type="submit"] {
+    background-color: #ae5bfc;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.ContactForm input[type="submit"]:hover {
+    background-color: #a242fd;
+}
+
+@media (max-width: 767px) {
+    .ContactForm {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+    }
+
+    .contact-img {
+        border-right: none;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .ContactForm input,
+    .ContactForm textarea {
+        font-size: 14px;
+    }
+
+    .ContactForm input[type="submit"] {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ContactForm {
+        padding: 10px;
+    }
+
+    .ContactForm input,
+    .ContactForm textarea {
+        font-size: 12px;
+    }
+
+    .ContactForm input[type="submit"] {
+        font-size: 12px;
+    }
+}

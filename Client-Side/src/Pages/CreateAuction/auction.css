@@ -1,0 +1,140 @@
+.main-auction-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auction-image-div {
+    max-width: 100%;
+
+}
+
+.auction-image-div img {
+    width: 100%;
+    height: auto;
+
+}
+
+.h2-heading {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+    font-size: 45px;
+    margin-top: 30px;
+    -webkit-animation: focus-in-expand 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: focus-in-expand 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@-webkit-keyframes focus-in-expand {
+    0% {
+        letter-spacing: -0.5em;
+        -webkit-transform: translateZ(-700px);
+        transform: translateZ(-700px);
+        -webkit-filter: blur(12px);
+        filter: blur(12px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-filter: blur(0);
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+
+@keyframes focus-in-expand {
+    0% {
+        letter-spacing: -0.5em;
+        -webkit-transform: translateZ(-700px);
+        transform: translateZ(-700px);
+        -webkit-filter: blur(12px);
+        filter: blur(12px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-filter: blur(0);
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+
+/* .p-text {
+    text-align: center;
+    font-style: italic;
+    background-color: rgb(211, 207, 207);
+    margin-top: 5px;
+    font-size: 18px;
+} */
+
+.card-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.card {
+    position: relative;
+    width: 350px;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.h3-heading-card {
+    background-color: rgb(197, 194, 194);
+    text-align: center;
+    color: black;
+    font-weight: 600;
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card-overlay button {
+    background-color: white;
+    color: black;
+    border-radius: 12px;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.card-overlay button:hover {
+    background-color: rgb(211, 207, 207);
+}
+
+.card:hover .card-overlay {
+    opacity: 1;
+}

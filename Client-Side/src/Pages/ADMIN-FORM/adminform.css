@@ -1,0 +1,107 @@
+/* Admin Form Container */
+.admin-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #ccc;
+}
+
+.admin-form {
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    width: 100%;
+    max-width: 500px;
+    transform: scale(0.8);
+    opacity: 0;
+    animation: zoomIn 0.5s ease-in-out forwards;
+}
+
+/* Admin Form Left */
+.admin-form-left {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.admin-image {
+    background-color: #fff;
+    max-width: 150px;
+}
+
+/* Admin Form Fields */
+.admin-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+
+.admin-form-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    background-color: #fff;
+}
+
+.admin-form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Admin Form Button */
+.admin-form-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.admin-form-button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .admin-form {
+        padding: 30px;
+    }
+
+    .admin-image {
+        max-width: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-form {
+        padding: 20px;
+    }
+
+    .admin-image {
+        max-width: 100px;
+    }
+}
+
+/* Animations */
+@keyframes zoomIn {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
