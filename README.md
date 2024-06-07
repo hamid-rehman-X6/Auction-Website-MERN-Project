@@ -55,20 +55,20 @@ The application will be available at http://localhost:3000.
 ## Usage
 
 - **Register/Login**: Create an account or log in to your existing account.
-- **Create Auction**: As a seller, list your products and create auctions.
+- **Create Auction**: As a seller, list your products.
 - **Place Bids**: As a bidder, explore the listed products and place your bids.
 - **Real-Time Updates**: Receive real-time updates on bids and auction status.
 - **Chat**: Use the integrated chatbot for seamless communication with sellers and bidders.
   
 ## Contributing
-Contributions are welcome! To contribute:
+#### Contributions are welcome! To contribute:
 
-Fork the repository.
-Create a new branch (git checkout -b feature-branch).
-Make your changes.
-Commit your changes (git commit -m 'Add some feature').
-Push to the branch (git push origin feature-branch).
-Open a Pull Request.
+- **Fork the repository**.
+- **Create a new branch (git checkout -b feature-branch)**.
+- **Make your changes**.
+- **Commit your changes (git commit -m 'Add some feature')**.
+- **Push to the branch (git push origin feature-branch)**.
+- **Open a Pull Request**.
 
 ### License
 This project is licensed under the MIT License. See the LICENSE file for more details.
