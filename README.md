@@ -64,9 +64,6 @@ The application will be available at http://localhost:3000.
 - **Push to the branch (git push origin feature-branch)**.
 - **Open a Pull Request**.
 
-### License
-This project is licensed under the MIT License. See the LICENSE file for more details.
-
 ### Contact
 #### For any questions or feedback, please contact:
 
