@@ -74,8 +74,8 @@ The application will be available at http://localhost:3000.
 This project is licensed under the MIT License. See the LICENSE file for more details.
 
 ### Contact
-For any questions or feedback, please contact:
+#### For any questions or feedback, please contact:
 
-Muhammad Hamid Rehman
-Email: your-email@example.com
-LinkedIn: Your LinkedIn Profile
+1. **Muhammad Hamid Rehman**
+2. **Email**: hamidrehman1012@gmail.com
+3. **LinkedIn**: www.linkedin.com/in/hamidrehman1012
