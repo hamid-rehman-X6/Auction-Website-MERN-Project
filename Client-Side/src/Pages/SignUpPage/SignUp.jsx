@@ -86,6 +86,7 @@ const SignUp = () => {
                   className={`field ${
                     errors.username && touched.username ? "error" : ""
                   }`}
+                  autoComplete="off"
                 />
                 {errors.username && touched.username && (
                   <div className="error-message">{errors.username}</div>
@@ -101,6 +102,7 @@ const SignUp = () => {
                   className={`field ${
                     errors.email && touched.email ? "error" : ""
                   }`}
+                  autoComplete="off"
                 />
                 {errors.email && touched.email && (
                   <div className="error-message">{errors.email}</div>

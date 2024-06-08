@@ -10,19 +10,38 @@ import LoginContext from "../../Context API/CreateContext";
 const Productlisting = () => {
   const navigate = useNavigate();
   const sellerId = sessionStorage.getItem("userId");
+  const token = sessionStorage.getItem("token");
+  console.log(token);
 
   const { isSellerRegistered, setIsSellerRegistered } =
     useContext(LoginContext);
 
+  // useEffect(() => {
+  //   const sellerRegistered = localStorage.getItem("isSellerRegistered");
+  //   if (sellerRegistered !== "true") {
+  //     // alert("Please fill out the seller form first.");
+  //     // navigate("/sellerform");
+  //   } else {
+  //     setIsSellerRegistered(true);
+  //   }
+  // }, [navigate, setIsSellerRegistered]);
+
   useEffect(() => {
-    const sellerRegistered = localStorage.getItem("isSellerRegistered");
-    if (sellerRegistered !== "true") {
-      // alert("Please fill out the seller form first.");
-      // navigate("/sellerform");
-    } else {
-      setIsSellerRegistered(true);
-    }
-  }, [navigate, setIsSellerRegistered]);
+    const fetchSellerStatus = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/status`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setIsSellerRegistered(response.data.isSellerRegistered);
+      } catch (error) {
+        console.error("Error fetching seller status", error);
+      }
+    };
+
+    fetchSellerStatus();
+  }, [setIsSellerRegistered, token]);
 
   const [Product, setProduct] = useState({
     title: "",
@@ -90,9 +109,17 @@ const Productlisting = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/products/post", {
-        ...Product,
-      });
+      const response = await axios.post(
+        "http://localhost:5000/products/post",
+        {
+          ...Product,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       toast.success("Product listed successfully", {
         position: "top-right",
       });

@@ -10,9 +10,8 @@ import "react-toastify/dist/ReactToastify.css";
 import LoginContext from "../../Context API/CreateContext";
 
 const Login = () => {
-  const { setIsLoggedIn } = useContext(LoginContext);
+  const { setIsLoggedIn, setIsSellerRegistered } = useContext(LoginContext);
   const [showPassword, setShowPassword] = useState(false);
-  const [role, setRole] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,15 +28,28 @@ const Login = () => {
       if (response.data === "Login Successfully") {
       }
       toast.success(response.data.msg, { position: "top-right" });
+      setTimeout(() => {
+        navigate("/home");
+      }, 1500);
 
       sessionStorage.setItem("userRole", response.data.role);
       sessionStorage.setItem("userId", response.data.userId);
+      sessionStorage.setItem("token", response.data.token); // Store JWT token
+
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("email", values.email);
 
-      setTimeout(() => {
-        navigate("/home");
-      }, 2000);
+      setIsLoggedIn(true);
+      setIsSellerRegistered(response.data.isSellerRegistered);
+
+      if (
+        response.data.role === "Seller" &&
+        !response.data.isSellerRegistered
+      ) {
+        setTimeout(() => {
+          navigate("/home");
+        }, 2000);
+      }
     } catch (error) {
       if (
         error.response &&
@@ -89,6 +101,7 @@ const Login = () => {
                   name="email"
                   className="text-fields"
                   required
+                  autoComplete="off"
                 />
                 <span className="form-text">Password:</span>
                 <Field

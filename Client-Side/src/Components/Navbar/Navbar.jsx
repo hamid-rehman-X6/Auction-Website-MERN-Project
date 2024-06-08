@@ -9,7 +9,8 @@ import { faUserTie } from "@fortawesome/free-solid-svg-icons";
 function Navbar() {
   const navigate = useNavigate();
   const navRef = useRef();
-  const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
+  const { isLoggedIn, setIsLoggedIn, setIsSellerRegistered } =
+    useContext(LoginContext);
 
   useEffect(() => {
     const loggedIn = localStorage.getItem("isLoggedIn");
@@ -22,15 +23,19 @@ function Navbar() {
     navRef.current.classList.toggle("responsive_nav");
   };
 
-  const handleLogin = () => {
+  const handleLoginLogout = () => {
     if (isLoggedIn) {
       setIsLoggedIn(false);
+      setIsSellerRegistered(false);
+
       localStorage.setItem("isLoggedIn", "false");
+
       localStorage.removeItem("email");
       sessionStorage.removeItem("userRole");
       sessionStorage.removeItem("userId");
-    }
-    if (!isLoggedIn) {
+      sessionStorage.removeItem("token"); // Remove JWT token
+      navigate("/home");
+    } else {
       navigate("/login");
     }
   };
@@ -64,7 +69,7 @@ function Navbar() {
           <FontAwesomeIcon icon={faUserTie} className="user-Tie-icon" />
         </button>
         <button
-          onClick={handleLogin}
+          onClick={handleLoginLogout}
           className={`login-btn ${isLoggedIn ? "logged-in" : "logged-out"}`}
         >
           {isLoggedIn ? "Log Out" : "Log In"}

@@ -3,6 +3,14 @@ const jwt = require("jsonwebtoken");
 const UserModel = require("../Models/Users");
 const nodemailer = require("nodemailer");
 
+// token generate
+const generateToken = (id) => {
+    return jwt.sign({ id }, "secret5575key5755", {
+        expiresIn: "1d",
+    });
+};
+
+// ----------------------------------------  SIGNUP API   ------------------------------------------------
 exports.signup = async (req, res) => {
     try {
         const existingUser = await UserModel.findOne({ email: req.body.email });
@@ -11,7 +19,6 @@ exports.signup = async (req, res) => {
         }
 
         // Hash password bcrypt
-
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
         const newUser = await UserModel.create({
             username: req.body.username,
@@ -20,54 +27,51 @@ exports.signup = async (req, res) => {
             role: req.body.role,
         });
 
-        // Assign JWT (json web token) to user
-
-        const token = jwt.sign({ userId: newUser._id }, "secret5575key5755", {
-            expiresIn: "1d",
+        const token = generateToken(newUser._id);
+        res.status(201).json({
+            msg: `User-${newUser.role} Registered Successfully`,
+            userId: newUser._id,
+            role: newUser.role,
+            token,
+            isSellerRegistered: newUser.isSellerRegistered,
         });
-        // Return different response messages based on the user's role
-        if (newUser.role === "Seller") {
-            return res
-                .status(201)
-                .json({ msg: "User-Seller Registered Successfully", token });
-        } else {
-            return res
-                .status(201)
-                .json({ msg: "User-Bidder Registered Successfully", token });
-        }
-
-        // return res.status(201).json({ msg: "User Registered Successfully", token });
     } catch (error) {
         console.error(error.message);
         return res.status(500).json({ msg: "Internal Server Error" });
     }
 };
 
+// ----------------------------------------  LOGIN API   ------------------------------------------------
 exports.login = async (req, res) => {
     try {
         const { email, password } = req.body;
         const user = await UserModel.findOne({ email: email });
 
         if (!user) {
-            // console.log("No such user found!");
             return res.status(404).json({ msg: "User not Exist" });
         }
 
         const isPasswordValid = await bcrypt.compare(password, user.password);
+        console.log("Password valid: ", isPasswordValid);
         if (!isPasswordValid) {
-            //   console.log("Incorrect password");
             return res.status(401).json({ msg: "Incorrect Password! Try Again" });
         }
 
-        const token = jwt.sign({ userId: user._id, role: user.role }, "secret5575key5755", {
-            expiresIn: "1d",
+        const token = generateToken(user._id);
+        res.status(200).json({
+            msg: "Login Successfully",
+            userId: user._id,
+            role: user.role,
+            token,
+            isSellerRegistered: user.isSellerRegistered,
         });
-        return res.status(201).json({ msg: "Login Successfully", userId: user._id, token, role: user.role });
     } catch (error) {
         console.error(error.message);
         return res.status(500).json({ msg: "InternalServerError" });
     }
 };
+
+// ----------------------------------  GETALLUSERS API   ------------------------------------------
 
 exports.getAllUsers = async (req, res) => {
     try {
@@ -78,6 +82,8 @@ exports.getAllUsers = async (req, res) => {
     }
 };
 
+
+// -----------------------------------  FORGOT-PASSWORD API   --------------------------------------
 
 exports.forgotPassword = async (req, res) => {
     const { email } = req.body;
@@ -113,6 +119,9 @@ exports.forgotPassword = async (req, res) => {
         })
 
 }
+
+// --------------------------------  RESET-PASSWORD API   ---------------------------------
+
 
 exports.resetPassword = async (req, res) => {
     const { id, token } = req.params;

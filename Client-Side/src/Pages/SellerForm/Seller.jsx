@@ -32,8 +32,17 @@ const Seller = () => {
   });
 
   const handleSubmit = async (values, { setSubmitting }) => {
+    const token = sessionStorage.getItem("token");
     try {
-      const response = await axios.post(`http://localhost:5000/seller`, values);
+      const response = await axios.post(
+        `http://localhost:5000/seller`,
+        values,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       // console.log(response.data.msg);
       toast.success(response.data.msg, { position: "top-right" });
 
@@ -86,6 +95,7 @@ const Seller = () => {
                     name="firstName"
                     placeholder="Hamid"
                     className="custom-input-S"
+                    autoComplete="off"
                   />
 
                   {errors.firstName && touched.firstName && (
@@ -106,6 +116,7 @@ const Seller = () => {
                     name="lastName"
                     placeholder="Rehman"
                     className="custom-input-S"
+                    autoComplete="off"
                   />
 
                   {errors.lastName && touched.lastName && (
@@ -124,6 +135,7 @@ const Seller = () => {
                     name="businessName"
                     placeholder="e.g, Systems Limited"
                     className="custom-input-S"
+                    autoComplete="off"
                   />
 
                   {errors.businessName && touched.businessName && (
@@ -142,6 +154,7 @@ const Seller = () => {
                     name="address"
                     placeholder="123 Fake Street"
                     className="custom-input-S"
+                    autoComplete="off"
                   />
 
                   {errors.address && touched.address && (
@@ -160,6 +173,7 @@ const Seller = () => {
                     name="phoneNumber"
                     placeholder="+92-xxx-xxxxxxx"
                     className="custom-input-S"
+                    autoComplete="off"
                   />
 
                   {errors.phoneNumber && touched.phoneNumber && (
@@ -176,6 +190,7 @@ const Seller = () => {
                     name="postalCode"
                     placeholder="Enter Your Postal Code"
                     className="custom-input-S"
+                    autoComplete="off"
                   />
 
                   {errors.postalCode && touched.postalCode && (
@@ -195,6 +210,7 @@ const Seller = () => {
                     name="CNIC"
                     placeholder="xxxxx-xxxxxxx-x"
                     className="custom-input-S"
+                    autoComplete="off"
                   />
 
                   {errors.CNIC && touched.CNIC && (
