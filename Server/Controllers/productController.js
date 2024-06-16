@@ -11,7 +11,7 @@ exports.createProduct = async (req, res) => {
             auctionEndDate,
             sellerName,
             images,
-            sellerId,
+            userId,
         } = req.body;
 
         const newProductData = new Product({
@@ -23,7 +23,7 @@ exports.createProduct = async (req, res) => {
             auctionEndDate,
             sellerName,
             images,
-            sellerId,
+            userId,
         });
         console.log(newProductData);
         await newProductData.save();
@@ -73,16 +73,38 @@ exports.deleteProduct = async (req, res) => {
 
 exports.getProductsBySellerId = async (req, res) => {
     try {
-        const { sellerId } = req.params;
-        console.log("Seller ID: ", sellerId);
+        const { userId } = req.params;
+        // console.log("User ID: ", userId);
 
 
-        const products = await Product.find({ sellerId });
+        const products = await Product.find({ userId });
         // console.log("Products: ", products);
 
 
         res.status(200).json({ products });
     } catch (error) {
         res.status(500).json({ message: error.message });
+    }
+}
+
+
+exports.updateProduct = async (req, res) => {
+    const { id } = req.params;
+    const updatedData = req.body;
+
+    try {
+
+        const updatedProduct = await Product.findByIdAndUpdate(id, updatedData, {
+            new: true,
+        })
+
+        if (!updatedProduct) {
+            return res.status(404).json({ message: 'Product not found' });
+        }
+
+        res.status(200).json({ product: updatedProduct });
+    } catch {
+        res.status(500).json({ message: 'Error updating product', error });
+
     }
 }

@@ -31,9 +31,14 @@ function Navbar() {
       localStorage.setItem("isLoggedIn", "false");
 
       localStorage.removeItem("email");
+      localStorage.removeItem("user");
+
       sessionStorage.removeItem("userRole");
       sessionStorage.removeItem("userId");
       sessionStorage.removeItem("token"); // Remove JWT token
+
+      // for bidder
+      localStorage.removeItem("isBidderRegistered");
       navigate("/home");
     } else {
       navigate("/login");

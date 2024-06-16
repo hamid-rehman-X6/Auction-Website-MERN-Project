@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./productpage.css";
-import Delete from "../../Components/DeleteProduct/Delete";
+
 import { useNavigate } from "react-router";
 
 const ProductPage = () => {
@@ -56,6 +56,7 @@ const ProductPage = () => {
         setLoading(false);
       } catch (error) {
         console.error(error);
+        setLoading(false);
       }
     };
     fetchProducts();
@@ -64,7 +65,7 @@ const ProductPage = () => {
   return (
     <>
       {loading ? (
-        <div className="Product-Loading-div-class">Loading products...</div>
+        <div id="spinner-element"></div>
       ) : (
         <div className="product-page-container">
           <div className="search-container">

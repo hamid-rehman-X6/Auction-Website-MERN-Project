@@ -8,8 +8,9 @@ import { useNavigate } from "react-router";
 import LoginContext from "../../Context API/CreateContext";
 
 const Productlisting = () => {
+  window.scroll(0, 0);
   const navigate = useNavigate();
-  const sellerId = sessionStorage.getItem("userId");
+  const userId = sessionStorage.getItem("userId");
   const token = sessionStorage.getItem("token");
   console.log(token);
 
@@ -52,7 +53,7 @@ const Productlisting = () => {
     auctionEndDate: "",
     sellerName: "",
     images: [],
-    sellerId: sellerId,
+    userId: userId,
   });
 
   const handlechange = async (e) => {

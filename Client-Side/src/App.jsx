@@ -23,7 +23,9 @@ import ForgotPassword from "./Pages/FORGOT-P/ForgotPassword";
 import ResetPassword from "./Pages/RESET-P/ResetPassword";
 import SellerProtectedR from "./Context API/SellerProtectedR";
 import AuctionRoom from "./Pages/AuctionROOM/AuctionRoom";
-import ChatApp from "./Components/CHATBOT/ChatApp";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+// import ChatApp from "./Components/CHATBOT/ChatApp";
 
 // import Navbaar from "./Navbaar";
 
@@ -37,7 +39,7 @@ const App = () => {
   const isAdmin = location.pathname === "/admin";
   const isAdminForm = location.pathname === "/adminform";
   const isError404 = location.pathname === "/404error";
-  const Chatbot = location.pathname === "/chat-App";
+  // const Chatbot = location.pathname === "/chat-App";
 
   const renderNavbar =
     !isLoginPage && !isSignupPage && !isSeller && !isBidder && !isError404;
@@ -48,8 +50,8 @@ const App = () => {
     !isBidder &&
     !isAdmin &&
     !isAdminForm &&
-    !isError404 &&
-    !Chatbot;
+    !isError404;
+  // !Chatbot;
 
   return (
     <>
@@ -97,11 +99,12 @@ const App = () => {
             element={<ResetPassword />}
           />
           <Route path="/auction-Room" element={<AuctionRoom />} />
-          <Route path="/chat-App" element={<ChatApp />} />
+          {/* <Route path="/chat-App" element={<ChatApp />} /> */}
         </Routes>
 
         {renderFooter && <Footer />}
       </StateLoginContext>
+      <ToastContainer />
     </>
   );
 };

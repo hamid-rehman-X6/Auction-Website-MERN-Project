@@ -10,7 +10,8 @@ import "react-toastify/dist/ReactToastify.css";
 import LoginContext from "../../Context API/CreateContext";
 
 const Login = () => {
-  const { setIsLoggedIn, setIsSellerRegistered } = useContext(LoginContext);
+  const { setIsLoggedIn, setIsSellerRegistered, login } =
+    useContext(LoginContext);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
@@ -24,7 +25,7 @@ const Login = () => {
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
       const response = await axios.post("http://localhost:5000/login", values);
-      console.log(response.data);
+      console.log(response);
       if (response.data === "Login Successfully") {
       }
       toast.success(response.data.msg, { position: "top-right" });
@@ -32,12 +33,23 @@ const Login = () => {
         navigate("/home");
       }, 1500);
 
+      const userData = {
+        userId: response.data.userId,
+        role: response.data.role,
+        token: response.data.token,
+        isSellerRegistered: response.data.isSellerRegistered,
+      };
+      console.log(userData);
+
+      login(userData); // Set user data in context and localStorage
       sessionStorage.setItem("userRole", response.data.role);
       sessionStorage.setItem("userId", response.data.userId);
       sessionStorage.setItem("token", response.data.token); // Store JWT token
 
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("email", values.email);
+
+      localStorage.setItem("user", JSON.stringify(response.data));
 
       setIsLoggedIn(true);
       setIsSellerRegistered(response.data.isSellerRegistered);

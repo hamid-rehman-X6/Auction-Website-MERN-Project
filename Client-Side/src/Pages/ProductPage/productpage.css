@@ -1,10 +1,21 @@
-.Product-Loading-div-class {
-    text-align: center;
-    font-size: 45px;
-    font-family: cursive;
+#spinner-element {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 10px solid;
+    border-color: rgb(234, 234, 234) rgb(79, 119, 250) rgb(229, 229, 229) rgb(79, 119, 250);
+    margin: 50px auto;
     margin-top: 150px;
     margin-bottom: 150px;
+    animation: rotate 1.5s linear infinite;
 }
+
+@keyframes rotate {
+    to {
+        transform: rotate(365deg);
+    }
+}
+
 
 
 .product-page-container {

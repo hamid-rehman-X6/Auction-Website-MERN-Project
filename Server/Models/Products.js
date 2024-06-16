@@ -46,9 +46,24 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    sellerId: {
+    userId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Seller' // Reference to the Seller model
+        ref: 'Users' // Reference to the User model
+    },
+
+    currentPrice: {
+        type: Number,
+        default: 0
+    },
+    highestBidder: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Users',
+        default: null
+    },
+    auctionStatus: {
+        type: String,
+        enum: ['NOT_STARTED', 'ONGOING', 'ENDED'],
+        default: 'NOT_STARTED'
     }
 });
 

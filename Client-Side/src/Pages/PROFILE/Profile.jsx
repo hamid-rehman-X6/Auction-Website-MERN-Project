@@ -4,28 +4,33 @@ import "./Profile.css";
 import { useNavigate } from "react-router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import UpdateProductModal from "../../Components/UpdateProduct/UpdateProductModal";
 
 function Profile() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [products, setProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const sellerId = sessionStorage.getItem("userId");
-      // console.log("Fetched Seller ID: ", sellerId);
+      const userId = sessionStorage.getItem("userId");
+      console.log("Fetched User ID: ", userId);
 
-      if (!sellerId) {
+      if (!userId) {
         console.error("Seller ID not found in session storage");
         return;
       }
 
       try {
         const response = await axios.get(
-          `http://localhost:5000/products/seller/${sellerId}`
+          `http://localhost:5000/products/seller/${userId}`
         );
         // console.log("Response data:", response.data);
         setProducts(response.data.products);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -67,72 +72,92 @@ function Profile() {
     }
   };
 
+  const handleUpdateBtn = async (product) => {
+    setSelectedProduct(product);
+    setShowUpdateModal(true);
+    // navigate("/update-product");
+  };
+
+  const handleUpdate = (updatedProduct) => {
+    setProducts((prevProducts) =>
+      prevProducts.map((product) =>
+        product._id === updatedProduct._id ? updatedProduct : product
+      )
+    );
+    setShowUpdateModal(false);
+  };
   return (
     <>
-      <div className="user-profile-container">
-        <div className="user-profile-card">
-          <div className="user-avatar">
-            <div className="avatar-letter">{email.charAt(0)}</div>
-            <div className="avatar-letter">{email.charAt(1)}</div>
+      {loading ? (
+        <div id="spinner-element-for-profile-page"></div>
+      ) : (
+        <div className="user-profile-container">
+          <div className="user-profile-card">
+            <div className="user-avatar">
+              <div className="avatar-letter">{email.charAt(0)}</div>
+              <div className="avatar-letter">{email.charAt(1)}</div>
+            </div>
+            <div className="user-details">
+              <p>{email}</p>
+            </div>
           </div>
-          <div className="user-details">
-            <p>{email}</p>
+
+          <div className="user-products">
+            <h2>Your Product Ads</h2>
+
+            <div className="product-grid-for-profile-page">
+              {Array.isArray(products) ? (
+                products.map((product) => (
+                  <div
+                    key={product._id}
+                    className="product-card-for-profile-page"
+                  >
+                    <div className="product-image-for-profile">
+                      <img
+                        src={product.images[0]}
+                        style={{ width: "100%", height: "100%" }}
+                        alt={product.title}
+                      />
+                    </div>
+                    <div className="product-details-for-profile">
+                      <h3>{product.title}</h3>
+                      <p>Starting Price: {product.startingPrice}</p>
+                      <p>Category: {product.category}</p>
+                    </div>
+
+                    <div className="product-actions-for-profile-page">
+                      <button
+                        className="delete-btn-profile"
+                        onClick={() => handleDeleteBtn(product._id)}
+                      >
+                        <i className="fas fa-trash-alt"></i>
+                      </button>
+                      <button
+                        className="update-btn-profile"
+                        onClick={() => handleUpdateBtn(product)}
+                      >
+                        <i className="fas fa-edit"></i>
+                      </button>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <p>Products data is not an array</p>
+              )}
+            </div>
           </div>
         </div>
-
-        <div className="user-products">
-          <h2>Your Product Ads</h2>
-          <div className="product-grid-for-profile-page">
-            {Array.isArray(products) ? (
-              products.map((product) => (
-                <div
-                  key={product._id}
-                  className="product-card-for-profile-page"
-                >
-                  <div className="product-image-for-profile">
-                    <img
-                      src={product.images[0]}
-                      style={{ width: "100%", height: "100%" }}
-                      alt={product.title}
-                    />
-                  </div>
-                  <div className="product-details-for-profile">
-                    <h3>{product.title}</h3>
-                    <p>Starting Price: {product.startingPrice}</p>
-                    <p>Category: {product.category}</p>
-                  </div>
-
-                  <div className="product-actions-for-profile-page">
-                    <button
-                      className="delete-btn-profile"
-                      onClick={() => handleDeleteBtn(product._id)}
-                    >
-                      <i className="fas fa-trash-alt"></i>
-                    </button>
-                    <button className="update-btn-profile">
-                      <i className="fas fa-edit"></i>
-                    </button>
-                  </div>
-                </div>
-              ))
-            ) : (
-              <p>Products data is not an array</p>
-            )}
-          </div>
-        </div>
-      </div>
+      )}
+      {showUpdateModal && (
+        <UpdateProductModal
+          product={selectedProduct}
+          onClose={() => setShowUpdateModal(false)}
+          onUpdate={handleUpdate}
+        />
+      )}
       <ToastContainer />
     </>
   );
 }
 
 export default Profile;
-
-// const handleUpdateProduct = (id, updatedProduct) => {
-//   setUser((prevUser) => ({
-//     ...prevUser,
-//     products: prevUser.products.map((product) =>
-//       product.id === id ? updatedProduct : product
-//     ),
-//   }));
-// };

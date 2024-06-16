@@ -72,7 +72,7 @@ const Home = () => {
       <section>
         <h3 className="section-h3">Featured Auction Items</h3>
         {loading ? (
-          <div className="Product-Loading-div-class">Loading products...</div>
+          <div id="spinner-element"></div>
         ) : (
           <div className="product-grid-for-homepage">
             {latestProducts.map((product) => (

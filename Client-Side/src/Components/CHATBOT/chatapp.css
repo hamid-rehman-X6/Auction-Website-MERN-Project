@@ -1,4 +1,4 @@
-.chat__section {
+/* .chat__section {
     width: 90%;
     max-width: 600px;
     display: flex;
@@ -8,7 +8,7 @@
     font-family: Arial, sans-serif;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     padding: 0 10px;
-    /* Add some padding for better spacing on small screens */
+
 }
 
 .brand {
@@ -17,7 +17,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Center content for better alignment on small screens */
+
 }
 
 .brand img {
@@ -91,7 +91,7 @@ textarea::placeholder {
         height: 100vh;
         margin: 0;
         padding: 0 5px;
-        /* Adjust padding for very small screens */
+
     }
 
     .brand h1 {
@@ -139,4 +139,4 @@ textarea::placeholder {
         font-size: 10px;
         top: -16px;
     }
-}
+} */

@@ -28,8 +28,8 @@ const Bidder = () => {
   const handleSubmit = async (values) => {
     try {
       const response = await axios.post(`http://localhost:5000/bidder`, values);
-      console.log(response.data.msg);
-      // toast.success(response.data.msg, { position: "bottom-right" });
+      console.log(response);
+      toast.success(response.data.msg, { position: "bottom-right" });
 
       localStorage.setItem("isBidderRegistered", "true");
       setIsBidderRegistered(true);

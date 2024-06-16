@@ -38,7 +38,7 @@ const ProductDetail = () => {
       alert("Please fill the bidder form first.");
       navigate("/bidderform", { state: { from: location } });
     } else {
-      navigate("/auction-Room");
+      navigate(`/auction-Room`, { state: { product } });
     }
   };
   if (!product) {
