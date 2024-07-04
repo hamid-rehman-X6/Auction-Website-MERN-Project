@@ -25,8 +25,8 @@ exports.createProduct = async (req, res) => {
             images,
             userId,
         });
-        console.log(newProductData);
         await newProductData.save();
+        // console.log("New Product: ", newProductData);
 
         res
             .status(201)
@@ -106,5 +106,37 @@ exports.updateProduct = async (req, res) => {
     } catch {
         res.status(500).json({ message: 'Error updating product', error });
 
+    }
+}
+
+
+exports.placeProductForAuction = async (req, res) => {
+
+    try {
+        const product = await Product.findById(req.params.id);
+        if (!product) {
+            console.log(`Product with id ${req.params.id} not found`);
+            return res.status(404).json({ message: 'Product not found' });
+        }
+
+        product.isAuctioned = true;
+        await product.save();
+        console.log(`Product with id ${req.params.id} updated to auctioned`);
+
+        res.status(200).json({ product });
+    } catch (error) {
+        console.error('Error placing product for auction:', error);
+        res.status(500).json({ message: 'Error placing product for auction', error });
+    }
+}
+
+exports.getAuctionedProduct = async (req, res) => {
+    try {
+        const products = await Product.find({ isAuctioned: true });
+        console.log("Auctioned Products: ", products);
+        res.json({ products });
+    } catch (error) {
+        console.error('Error fetching auctioned products:', error);
+        res.status(500).json({ message: 'Error fetching auctioned products', error });
     }
 }

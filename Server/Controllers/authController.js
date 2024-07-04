@@ -2,6 +2,9 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const UserModel = require("../Models/Users");
 const nodemailer = require("nodemailer");
+const Products = require("../Models/Products");
+const SellerForm = require("../Models/Seller");
+const BidderForm = require("../Models/Bidder");
 
 // token generate
 const generateToken = (id) => {
@@ -34,6 +37,7 @@ exports.signup = async (req, res) => {
             role: newUser.role,
             token,
             isSellerRegistered: newUser.isSellerRegistered,
+            isBidderRegistered: newUser.isBidderRegistered,
         });
     } catch (error) {
         console.error(error.message);
@@ -64,6 +68,7 @@ exports.login = async (req, res) => {
             role: user.role,
             token,
             isSellerRegistered: user.isSellerRegistered,
+            isBidderRegistered: user.isBidderRegistered,
         });
     } catch (error) {
         console.error(error.message);
@@ -81,6 +86,44 @@ exports.getAllUsers = async (req, res) => {
         console.error(error);
     }
 };
+
+// ----------------------------------  DELETEUSERS API  ------------------------------------------
+
+exports.deleteUsers = async (req, res) => {
+    try {
+        const userId = req.params.id;
+        console.log('Deleting user with ID:', userId);
+
+        const user = await UserModel.findById(userId);
+
+
+        if (!user) {
+            return res.status(404).send({ message: 'User not found' });
+        }
+
+        // Delete user
+        await UserModel.findByIdAndDelete(userId);
+
+        // If the user is a seller, delete their products and seller form
+        if (user.role === 'Seller') {
+            await Products.deleteMany({ userId: userId });
+            await SellerForm.deleteOne({ user: userId });
+        }
+        if (user.role === 'Bidder') {
+            await Products.deleteMany({ userId: userId });
+            await BidderForm.deleteOne({ user: userId });
+        }
+
+        console.log("User and their related data deleted successfully");
+
+
+        res.status(200).send({ message: 'User and their related data deleted successfully' });
+    } catch (err) {
+        console.error('Error deleting user:', err);
+        res.status(500).send({ message: 'Error deleting user', error: err });
+    }
+}
+
 
 
 // -----------------------------------  FORGOT-PASSWORD API   --------------------------------------

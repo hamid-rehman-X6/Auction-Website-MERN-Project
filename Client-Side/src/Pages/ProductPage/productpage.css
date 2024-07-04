@@ -149,6 +149,11 @@ option {
 
 }
 
+.danger {
+    color: red;
+    font-weight: bold;
+}
+
 .product-card p {
     margin: 5px 10px;
     font-size: 14px;

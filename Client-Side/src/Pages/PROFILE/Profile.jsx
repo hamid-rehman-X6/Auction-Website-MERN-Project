@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Profile.css";
 import { useNavigate } from "react-router";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UpdateProductModal from "../../Components/UpdateProduct/UpdateProductModal";
 
@@ -20,7 +19,7 @@ function Profile() {
       console.log("Fetched User ID: ", userId);
 
       if (!userId) {
-        console.error("Seller ID not found in session storage");
+        alert("Seller ID not found in session storage");
         return;
       }
 
@@ -86,6 +85,28 @@ function Profile() {
     );
     setShowUpdateModal(false);
   };
+
+  const handlePlaceForAuction = async (productId) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:5000/products/placeAuction/${productId}`
+      );
+
+      console.log(response);
+
+      const updatedProduct = response.data.product;
+      console.log(updatedProduct);
+      setProducts((prevProducts) =>
+        prevProducts.map((product) =>
+          product._id === updatedProduct._id ? updatedProduct : product
+        )
+      );
+      alert("Product placed for auction successfully");
+      navigate("/auction-Room");
+    } catch (error) {
+      console.error("Error placing product for auction:", error);
+    }
+  };
   return (
     <>
       {loading ? (
@@ -138,6 +159,16 @@ function Profile() {
                       >
                         <i className="fas fa-edit"></i>
                       </button>
+
+                      {!product.isAuctioned && (
+                        <button
+                          className="auction-btn-profile"
+                          onClick={() => handlePlaceForAuction(product._id)}
+                        >
+                          <i className="fas fa-gavel"></i>
+                          <span className="tooltiptext">Place Bid</span>
+                        </button>
+                      )}
                     </div>
                   </div>
                 ))
@@ -155,7 +186,6 @@ function Profile() {
           onUpdate={handleUpdate}
         />
       )}
-      <ToastContainer />
     </>
   );
 }

@@ -26,19 +26,28 @@ const Bidder = () => {
   });
 
   const handleSubmit = async (values) => {
+    const token = sessionStorage.getItem("token");
     try {
-      const response = await axios.post(`http://localhost:5000/bidder`, values);
+      const response = await axios.post(
+        `http://localhost:5000/bidder`,
+        values,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       console.log(response);
       toast.success(response.data.msg, { position: "bottom-right" });
 
       localStorage.setItem("isBidderRegistered", "true");
       setIsBidderRegistered(true);
 
-      const from = location.state?.from?.pathname || "/product-Page";
-      navigate(from);
-      // setTimeout(() => {
-      //   navigate("/product-Details");
-      // }, 2000);
+      // const from = location.state?.from?.pathname || "/product-Page";
+      // navigate(from);
+      setTimeout(() => {
+        navigate("/auction-Room");
+      }, 2000);
     } catch (error) {
       if (error.response && error.response.data) {
         // console.log("Error Response Data:", error.response.data.error);

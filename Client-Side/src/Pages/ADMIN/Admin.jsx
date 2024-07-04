@@ -5,6 +5,7 @@ import {
   faUserTie,
   faBriefcase,
   faSignOutAlt,
+  faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import "./admin.css";
 import axios from "axios";
@@ -39,6 +40,7 @@ const Admin = () => {
     const fetchSellers = async () => {
       try {
         const response = await axios.get(`http://localhost:5000/getallsellers`);
+        // console.log("Seller : ", response);
         setSellers(response.data.Data);
       } catch (err) {
         console.error(err);
@@ -102,6 +104,7 @@ const Admin = () => {
                   <th>Username</th>
                   <th>Email</th>
                   <th>Role</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody className="tablebody">
@@ -111,6 +114,14 @@ const Admin = () => {
                     <td>{user.username}</td>
                     <td>{user.email}</td>
                     <td>{user.role}</td>
+                    <td>
+                      <button
+                        className="delete-btn-for-admin"
+                        // onClick={() => handleDeleteUser(user._id)}
+                      >
+                        <FontAwesomeIcon icon={faTrashAlt} />
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>

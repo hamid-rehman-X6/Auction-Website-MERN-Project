@@ -1,5 +1,6 @@
 const Seller = require("../Models/Seller");
 const Bidder = require("../Models/Bidder");
+const UserModel = require("../Models/Users");
 
 exports.registerBidder = async (req, res) => {
     try {
@@ -9,7 +10,18 @@ exports.registerBidder = async (req, res) => {
         if (existingSellerCNIC || existingBidderCNIC) {
             return res.status(400).json({ error: "CNIC already in use!" });
         }
-        const newBidder = await Bidder.create(req.body);
+        // const newBidder = await Bidder.create(req.body);
+
+        const userID = req.user._id;
+
+        const newBidder = new Bidder({
+            ...req.body,
+            user: userID // Add user ID to the bidder record
+        });
+
+        await newBidder.save();
+        await UserModel.findByIdAndUpdate(userID, { isBidderRegistered: true })
+
         return res
             .status(201)
             .json({ msg: "Bidder Registered Successfully", Data: newBidder });

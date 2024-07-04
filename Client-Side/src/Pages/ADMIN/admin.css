@@ -89,6 +89,18 @@ th {
     color: #fff;
 }
 
+.delete-btn-for-admin {
+    background: none;
+    border: none;
+    color: #d9534f;
+    cursor: pointer;
+    margin-left: 45%;
+}
+
+.delete-btn-for-admin:hover {
+    color: #c9302c;
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
     .admin-container {

@@ -64,8 +64,13 @@ const productSchema = new mongoose.Schema({
         type: String,
         enum: ['NOT_STARTED', 'ONGOING', 'ENDED'],
         default: 'NOT_STARTED'
+    },
+    isAuctioned: {
+        type: Boolean,
+        default: false
     }
 });
+
 
 const Product = mongoose.model("Product", productSchema);
 

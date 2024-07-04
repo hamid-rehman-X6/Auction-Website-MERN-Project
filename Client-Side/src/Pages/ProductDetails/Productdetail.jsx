@@ -42,7 +42,13 @@ const ProductDetail = () => {
     }
   };
   if (!product) {
-    return <div className="loading-div">Loading...</div>;
+    return (
+      <ul className="ul-for-product-detail">
+        <li className="dot"></li>
+        <li className="dot"></li>
+        <li className="dot"></li>
+      </ul>
+    );
   }
 
   return (

@@ -24,6 +24,10 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  isBidderRegistered: {
+    type: Boolean,
+    default: false,
+  }
 })
 
 

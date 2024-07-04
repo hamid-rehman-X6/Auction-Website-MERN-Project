@@ -1,0 +1,156 @@
+/* CSS for focus-in-expand animation */
+.focus-in-expand {
+    -webkit-animation: focus-in-expand 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: focus-in-expand 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@-webkit-keyframes focus-in-expand {
+    0% {
+        letter-spacing: -0.5em;
+        -webkit-filter: blur(12px);
+        filter: blur(12px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-filter: blur(0px);
+        filter: blur(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes focus-in-expand {
+    0% {
+        letter-spacing: -0.5em;
+        -webkit-filter: blur(12px);
+        filter: blur(12px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-filter: blur(0px);
+        filter: blur(0px);
+        opacity: 1;
+    }
+}
+
+#spinner-element {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 10px solid;
+    border-color: rgb(234, 234, 234) rgb(79, 119, 250) rgb(229, 229, 229) rgb(79, 119, 250);
+    margin: 50px auto;
+    margin-top: 150px;
+    margin-bottom: 150px;
+    animation: rotate 1.5s linear infinite;
+}
+
+@keyframes rotate {
+    to {
+        transform: rotate(365deg);
+    }
+}
+
+
+
+
+.auction-room-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.auction-room-container h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #0056b3;
+}
+
+/* Grid styles */
+.auction-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.auction-product-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.auction-product-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+j .auction-product-image {
+    flex: 0 0 200px;
+    max-width: 200px;
+    border-right: 1px solid #ddd;
+}
+
+.auction-product-image img {
+    width: 150px;
+    height: 150px;
+}
+
+.auction-product-details {
+    flex: 1;
+    padding: 15px;
+}
+
+.auction-product-details h3 {
+    margin: 0 0 10px;
+    color: #0056b3;
+    background-color: #fff;
+}
+
+.auction-product-details p {
+    margin: 5px 0;
+    color: #666;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .auction-product-card {
+        flex-direction: column;
+    }
+
+    .auction-product-image {
+        flex: 0 0 auto;
+        max-width: 100%;
+        height: 200px;
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .auction-product-details {
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .auction-room-container {
+        padding: 10px;
+    }
+
+    .auction-grid {
+        gap: 10px;
+    }
+
+    .auction-product-details h3 {
+        font-size: 1.2em;
+    }
+
+    .auction-product-details p {
+        font-size: 0.9em;
+    }
+}

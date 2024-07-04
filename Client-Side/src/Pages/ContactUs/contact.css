@@ -1,6 +1,7 @@
 .ContactForm {
     display: flex;
-    gap: 50px;
+    flex-direction: row;
+    gap: 40px;
     max-width: 800px;
     /* height: 70vh; */
     margin: 30px auto;

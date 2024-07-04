@@ -12,7 +12,6 @@ const Productlisting = () => {
   const navigate = useNavigate();
   const userId = sessionStorage.getItem("userId");
   const token = sessionStorage.getItem("token");
-  console.log(token);
 
   const { isSellerRegistered, setIsSellerRegistered } =
     useContext(LoginContext);

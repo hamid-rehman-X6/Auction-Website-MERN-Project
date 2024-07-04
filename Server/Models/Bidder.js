@@ -1,31 +1,37 @@
 const mongoose = require("mongoose");
 
 const bidderSchema = new mongoose.Schema({
-    firstName:{
-        type: String,
-        require: true
-      },
-    lastName:{
-        type: String,
-        require: true
-      },
-    address:{
-        type: String,
-        require: true
-      },
-    phoneNumber:{
-        type: String,
-        require: true
-      },
+  firstName: {
+    type: String,
+    require: true
+  },
+  lastName: {
+    type: String,
+    require: true
+  },
+  address: {
+    type: String,
+    require: true
+  },
+  phoneNumber: {
+    type: String,
+    require: true
+  },
 
-    CNIC:{
-        type: String, 
-        require:true,
-        unique:true
-    }
+  CNIC: {
+    type: String,
+    require: true,
+    unique: true
+  },
+
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Users",
+    required: true
+  }
 
 })
 
-const Bidder = mongoose.model("Bidder" , bidderSchema);
+const Bidder = mongoose.model("Bidder", bidderSchema);
 
 module.exports = Bidder;

@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./productpage.css";
-
 import { useNavigate } from "react-router";
 
 const ProductPage = () => {
@@ -46,6 +45,13 @@ const ProductPage = () => {
   const filteredData = products.filter((item) => {
     return item.title.toLowerCase().includes(search.toLowerCase());
   });
+
+  // const calculateDaysLeft = (endDate) => {
+  //   const now = new Date();
+  //   const end = new Date(endDate);
+  //   const timeDifference = end - now;
+  //   return Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+  // };
 
   useEffect(() => {
     window.scroll(0, 0);
@@ -93,33 +99,40 @@ const ProductPage = () => {
           </div>
 
           <div className="product-grid">
-            {filteredData.map((product) => (
-              <div key={product._id} className="product-card">
-                <div
-                  className="images"
-                  onClick={() => navigate(`/product-Details/${product._id}`)}
-                >
-                  <img
-                    src={product.images[0]}
-                    style={{ width: "100%", height: "100%" }}
-                    alt=""
-                  />
-                </div>
+            {filteredData.map((product) => {
+              // const daysLeft = calculateDaysLeft(product.auctionEndDate);
+              return (
+                <div key={product._id} className="product-card">
+                  <div
+                    className="images"
+                    onClick={() => navigate(`/product-Details/${product._id}`)}
+                  >
+                    <img
+                      src={product.images[0]}
+                      style={{ width: "100%", height: "100%" }}
+                      alt={product.title}
+                    />
+                  </div>
 
-                <div className="product-title-info-section">
-                  <h2 className="product-title-h2-class">{product.title}</h2>
-                  <p>
-                    <strong>Category:</strong> {product.category}
-                  </p>
-                  <p>
-                    <strong>Starting Price:</strong> {product.startingPrice}
-                  </p>
-                  <p>
-                    <strong>Seller:</strong> {product.sellerName}
-                  </p>
+                  <div className="product-title-info-section">
+                    <h2 className="product-title-h2-class">{product.title}</h2>
+                    <p>
+                      <strong>Category:</strong> {product.category}
+                    </p>
+                    <p>
+                      <strong>Starting Price:</strong> {product.startingPrice}
+                    </p>
+                    <p>
+                      <strong>Seller:</strong> {product.sellerName}
+                    </p>
+                    {/* <p className={daysLeft <= 3 ? "danger" : ""}>
+                      <strong>Days Left:</strong> {daysLeft} day
+                      {daysLeft !== 1 ? "s" : ""}
+                    </p> */}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       )}
