@@ -85,7 +85,7 @@ const Productlisting = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { startingPrice, images } = Product;
+    const { startingPrice, images, auctionStartDate, auctionEndDate } = Product;
     if (startingPrice < 1000 || startingPrice > 100000) {
       toast.error("Starting price must be between 1000 and 1 lakh.", {
         position: "top-right",
@@ -105,6 +105,34 @@ const Productlisting = () => {
       alert(
         "You are not authorized to list a product. Please Signup/Registered as a seller."
       );
+      return;
+    }
+
+    // // Validate auction start and end dates
+    // const startDate = new Date(auctionStartDate);
+    // const endDate = new Date(auctionEndDate);
+    // const timeDiff = endDate.getTime() - startDate.getTime();
+    // const daysDiff = timeDiff / (1000 * 60 * 60 * 24);
+
+    // if (daysDiff < 7 || daysDiff > 14) {
+    //   toast.error("Auction duration must be between 7 and 14 days.", {
+    //     position: "top-right",
+    //   });
+    //   return;
+    // }
+
+    // Validate auction start and end dates
+    const startDate = new Date(auctionStartDate);
+    const endDate = new Date(auctionEndDate);
+    const timeDiff = endDate.getTime() - startDate.getTime();
+    console.log(timeDiff);
+    const daysDiff = timeDiff / (1000 * 60 * 60 * 24);
+    console.log(daysDiff);
+
+    if (daysDiff < 0 || daysDiff > 14) {
+      toast.error("Auction duration must be between 0 and 14 days.", {
+        position: "top-right",
+      });
       return;
     }
 
@@ -194,9 +222,9 @@ const Productlisting = () => {
             />
           </label>
           <label>
-            Auction Start Date & Time:
+            Auction Start Date:
             <input
-              type="datetime-local"
+              type="date"
               name="auctionStartDate"
               value={Product.auctionStartDate}
               onChange={handlechange}
@@ -205,9 +233,9 @@ const Productlisting = () => {
             />
           </label>
           <label>
-            Auction End Date & Time:
+            Auction End Date:
             <input
-              type="datetime-local"
+              type="date"
               name="auctionEndDate"
               value={Product.auctionEndDate}
               onChange={handlechange}

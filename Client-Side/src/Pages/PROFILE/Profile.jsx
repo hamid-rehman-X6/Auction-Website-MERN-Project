@@ -17,6 +17,10 @@ function Profile() {
     const fetchProducts = async () => {
       const userId = sessionStorage.getItem("userId");
       console.log("Fetched User ID: ", userId);
+      const userRole = sessionStorage.getItem("userRole");
+      console.log(userRole);
+      const bidderId = sessionStorage.getItem("bidderId");
+      console.log(bidderId);
 
       if (!userId) {
         alert("Seller ID not found in session storage");
@@ -24,10 +28,17 @@ function Profile() {
       }
 
       try {
-        const response = await axios.get(
-          `http://localhost:5000/products/seller/${userId}`
-        );
-        // console.log("Response data:", response.data);
+        let response;
+        if (userRole === "Seller") {
+          response = await axios.get(
+            `http://localhost:5000/products/seller/${userId}`
+          );
+        } else if (userRole === "Bidder") {
+          response = await axios.get(
+            `http://localhost:5000/bids/bidder/${bidderId}`
+          );
+        }
+
         setProducts(response.data.products);
         setLoading(false);
       } catch (error) {
@@ -124,7 +135,11 @@ function Profile() {
           </div>
 
           <div className="user-products">
-            <h2>Your Product Ads</h2>
+            <h2>
+              {sessionStorage.getItem("userRole") === "Seller"
+                ? "Your Products Ads"
+                : "Products You've Bid On"}
+            </h2>
 
             <div className="product-grid-for-profile-page">
               {Array.isArray(products) ? (
@@ -146,30 +161,32 @@ function Profile() {
                       <p>Category: {product.category}</p>
                     </div>
 
-                    <div className="product-actions-for-profile-page">
-                      <button
-                        className="delete-btn-profile"
-                        onClick={() => handleDeleteBtn(product._id)}
-                      >
-                        <i className="fas fa-trash-alt"></i>
-                      </button>
-                      <button
-                        className="update-btn-profile"
-                        onClick={() => handleUpdateBtn(product)}
-                      >
-                        <i className="fas fa-edit"></i>
-                      </button>
-
-                      {!product.isAuctioned && (
+                    {sessionStorage.getItem("userRole") === "Seller" && (
+                      <div className="product-actions-for-profile-page">
                         <button
-                          className="auction-btn-profile"
-                          onClick={() => handlePlaceForAuction(product._id)}
+                          className="delete-btn-profile"
+                          onClick={() => handleDeleteBtn(product._id)}
                         >
-                          <i className="fas fa-gavel"></i>
-                          <span className="tooltiptext">Place Bid</span>
+                          <i className="fas fa-trash-alt"></i>
                         </button>
-                      )}
-                    </div>
+                        <button
+                          className="update-btn-profile"
+                          onClick={() => handleUpdateBtn(product)}
+                        >
+                          <i className="fas fa-edit"></i>
+                        </button>
+
+                        {!product.isAuctioned && (
+                          <button
+                            className="auction-btn-profile"
+                            onClick={() => handlePlaceForAuction(product._id)}
+                          >
+                            <i className="fas fa-gavel"></i>
+                            <span className="tooltiptext">Place Bid</span>
+                          </button>
+                        )}
+                      </div>
+                    )}
                   </div>
                 ))
               ) : (

@@ -1,90 +1,53 @@
 // controllers/AuctionController.js
 const Product = require('../Models/Products');
-const Bid = require('../Models/Bid');
-const User = require('../Models/Users');
-
-exports.startAuction = async (req, res) => {
-    const { productId } = req.params;
-    const { sellerId, auctionDuration } = req.body;
-
-    try {
-        const product = await Product.findById(productId);
-        console.log("Product: ", product);
-
-        if (!product) {
-            return res.status(404).json({ error: 'Product not found' });
-        }
-
-        if (product.sellerId.toString() !== sellerId) {
-            return res.status(403).json({ error: 'Only the seller can start the auction' });
-        }
-
-        product.auctionStatus = 'ONGOING';
-        product.auctionEndDate = new Date(Date.now() + auctionDuration * 60000); // auctionDuration in minutes
-        await product.save();
-
-        return res.json({ message: 'Auction started', auctionEndDate: product.auctionEndDate });
-    } catch (err) {
-        return res.status(500).json({ error: err.message });
-    }
-};
+const Bidder = require("../Models/Bidder");
+const Bid = require("../Models/Bid");
 
 exports.placeBid = async (req, res) => {
-    const { productId } = req.params;
-    const { bidderId, bidAmount } = req.body;
+
+    const { productId, bidValue } = req.body;
+    const userID = req.user._id;
+    console.log("UserID: ", userID);
+
 
     try {
         const product = await Product.findById(productId);
-        console.log(product);
-
         if (!product) {
-            return res.status(404).json({ error: 'Product not found' });
+            return res.status(404).send("Product not found.");
         }
 
-        if (product.auctionStatus !== 'ONGOING') {
-            return res.status(400).json({ error: 'Auction is not ongoing' });
+        if (bidValue <= product.currentPrice) {
+            return res.status(400).send("Bid value must be higher than the current price.");
         }
 
-        if (bidAmount <= product.currentPrice) {
-            return res.status(400).json({ error: 'Bid amount must be higher than current price' });
+        // Retrieve bidder's information
+        const bidder = await Bidder.findOne({ user: userID });
+        // console.log(bidder);
+        if (!bidder) {
+            console.log("Bidder Not Found")
+            return res.status(404).send("Bidder not found.");
         }
 
-        const bid = new Bid({
-            amount: bidAmount,
-            bidder: bidderId,
-            product: productId
+
+        // Create a new bid entry
+        const newBid = new Bid({
+            productId,
+            bidderId: bidder._id,
+            bidValue,
         });
+        await newBid.save();
 
-        await bid.save();
 
-        product.currentPrice = bidAmount;
-        product.highestBidder = bidderId;
+        // Update the product's current price and highest bidder
+        product.currentPrice = bidValue;
+        product.highestBidder = `${bidder.firstName} ${bidder.lastName}`;
         await product.save();
 
-        return res.json({ message: 'Bid placed', currentPrice: product.currentPrice, highestBidder: product.highestBidder });
-    } catch (err) {
-        return res.status(500).json({ error: err.message });
+        res.json({ message: "Bid placed successfully", product });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Error placing bid.");
     }
+
 };
 
-exports.getAuctionStatus = async (req, res) => {
-    const { productId } = req.params;
-    console.log(productId);
-
-    try {
-        const product = await Product.findById(productId).populate('highestBidder', 'username');
-
-        if (!product) {
-            return res.status(404).json({ error: 'Product not found' });
-        }
-
-        return res.json({
-            currentPrice: product.currentPrice,
-            highestBidder: product.highestBidder ? product.highestBidder.username : null,
-            auctionStatus: product.auctionStatus,
-            auctionEndTime: product.auctionEndDate
-        });
-    } catch (err) {
-        return res.status(500).json({ error: err.message });
-    }
-};

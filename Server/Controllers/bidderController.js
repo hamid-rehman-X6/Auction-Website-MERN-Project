@@ -24,7 +24,7 @@ exports.registerBidder = async (req, res) => {
 
         return res
             .status(201)
-            .json({ msg: "Bidder Registered Successfully", Data: newBidder });
+            .json({ msg: "Bidder Registered Successfully", bidderId: newBidder._id, Data: newBidder });
     } catch (error) {
         console.error(error);
         return res

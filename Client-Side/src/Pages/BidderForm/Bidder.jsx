@@ -40,6 +40,9 @@ const Bidder = () => {
       console.log(response);
       toast.success(response.data.msg, { position: "bottom-right" });
 
+      const bidderId = response.data.bidderId; // Extract the bidder ID from the response
+      sessionStorage.setItem("bidderId", bidderId); // Store the bidder ID in session storage
+
       localStorage.setItem("isBidderRegistered", "true");
       setIsBidderRegistered(true);
 

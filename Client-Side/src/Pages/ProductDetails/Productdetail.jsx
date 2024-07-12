@@ -96,7 +96,7 @@ const ProductDetail = () => {
           <p className="description-text">{product.description}</p>
         </div>
 
-        <div className="auction-start-date">
+        {/* <div className="auction-start-date">
           <p className="auction-S-D-text">Auction Starts On:</p>
           <p className="auction-S-D-date">{product.auctionStartDate} </p>
         </div>
@@ -104,7 +104,7 @@ const ProductDetail = () => {
         <div className="auction-end-date">
           <p className="auction-E-D-text">Auction Ends On:</p>
           <p className="auction-E-D-date">{product.auctionEndDate} </p>
-        </div>
+        </div> */}
       </div>
     </div>
   );

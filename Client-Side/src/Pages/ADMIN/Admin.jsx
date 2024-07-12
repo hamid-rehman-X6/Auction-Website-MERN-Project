@@ -61,6 +61,19 @@ const Admin = () => {
     fetchBidders();
   }, []);
 
+  const handleDeleteUser = async (userId) => {
+    try {
+      await axios.delete(`http://localhost:5000/deleteuser/${userId}`);
+      setUsers(users.filter((user) => user._id !== userId));
+      setSellers(sellers.filter((seller) => seller.user === userId));
+      setBidders(bidders.filter((bidder) => bidder.user === userId));
+      alert("User and their related data deleted successfully");
+    } catch (err) {
+      console.error(err);
+      alert("Failed to delete user");
+    }
+  };
+
   return (
     <div className="admin-container">
       <div className="sidebar">
@@ -117,7 +130,7 @@ const Admin = () => {
                     <td>
                       <button
                         className="delete-btn-for-admin"
-                        // onClick={() => handleDeleteUser(user._id)}
+                        onClick={() => handleDeleteUser(user._id)}
                       >
                         <FontAwesomeIcon icon={faTrashAlt} />
                       </button>

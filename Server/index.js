@@ -11,6 +11,7 @@ const sellerRoutes = require("./Routes/sellerRoutes");
 const bidderRoutes = require("./Routes/bidderRoutes");
 const productRoutes = require("./Routes/productRoutes");
 const auctionRoutes = require("./Routes/auctionRoutes");
+const bidRoutes = require("./Routes/bidRoutes");
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.use(sellerRoutes);
 app.use(bidderRoutes);
 app.use(productRoutes);
 app.use(auctionRoutes);
+app.use(bidRoutes);
 
 // Connect to MongoDB and start the server
 const PORT = process.env.PORT || 5000;
