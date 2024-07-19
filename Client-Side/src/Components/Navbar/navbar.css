@@ -50,7 +50,7 @@ nav a:hover {
     display: none;
     background-color: transparent;
     border: none;
-    color: black;
+    color: whitesmoke;
     font-size: 24px;
     cursor: pointer;
 }
@@ -59,6 +59,7 @@ nav a:hover {
     position: absolute;
     top: 26px;
     right: 20px;
+    color: whitesmoke;
 }
 
 .btn-icon-usertie-container {
@@ -145,6 +146,7 @@ nav a:hover {
 
     nav a {
         font-size: 20px;
+        background-color: #333;
     }
 
     .nav-btn {

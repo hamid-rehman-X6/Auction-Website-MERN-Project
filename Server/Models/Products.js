@@ -53,16 +53,16 @@ const productSchema = new mongoose.Schema({
     auctionEndDate: {
         type: Date,
         required: true,
-        validate: {
-            validator: function (value) {
-                const startDate = new Date(this.auctionStartDate);
-                const endDate = new Date(value);
-                const timeDiff = endDate.getTime() - startDate.getTime();
-                const daysDiff = timeDiff / (1000 * 60 * 60 * 24);
-                return daysDiff >= 0 && daysDiff <= 14; // Ensure auction duration is between 0 and 14 days
-            },
-            message: 'Auction duration must be between 0 and 14 days.'
-        }
+        // validate: {
+        //     validator: function (value) {
+        //         const startDate = new Date(this.auctionStartDate);
+        //         const endDate = new Date(value);
+        //         const timeDiff = endDate.getTime() - startDate.getTime();
+        //         const daysDiff = timeDiff / (1000 * 60 * 60 * 24);
+        //         return daysDiff >= 0 && daysDiff <= 14; // Ensure auction duration is between 0 and 14 days
+        //     },
+        //     message: 'Auction duration must be between 0 and 14 days.'
+        // }
     },
 
     sellerName: {
@@ -86,6 +86,10 @@ const productSchema = new mongoose.Schema({
     isAuctioned: {
         type: Boolean,
         default: false
+    },
+    winner: {
+        type: String,
+        default: null
     }
 });
 

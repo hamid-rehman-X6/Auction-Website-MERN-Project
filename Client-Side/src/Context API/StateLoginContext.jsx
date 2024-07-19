@@ -54,10 +54,18 @@ function StateLoginContext(props) {
       role: userData.role,
       token: userData.token,
       isSellerRegistered: userData.isSellerRegistered,
+      isBidderRegistered: userData.isBidderRegistered,
+      bidderId: userData.bidderId,
     };
     setUser(user);
     localStorage.setItem("user", JSON.stringify(user));
     setIsLoggedIn(true);
+
+    setIsSellerRegistered(userData.isSellerRegistered);
+    setIsBidderRegistered(userData.isBidderRegistered);
+    if (userData.role === "Bidder") {
+      sessionStorage.setItem("bidderId", userData.bidderId); // Store bidder ID for Bidder role
+    }
   };
 
   const logout = () => {

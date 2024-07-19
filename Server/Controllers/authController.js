@@ -62,6 +62,15 @@ exports.login = async (req, res) => {
         }
 
         const token = generateToken(user._id);
+        let bidderId = null;
+
+        if (user.role === "Bidder") {
+            const bidder = await BidderForm.findOne({ user: user._id });
+            console.log(bidder);
+            if (bidder) {
+                bidderId = bidder._id;
+            }
+        }
         res.status(200).json({
             msg: "Login Successfully",
             userId: user._id,
@@ -69,6 +78,7 @@ exports.login = async (req, res) => {
             token,
             isSellerRegistered: user.isSellerRegistered,
             isBidderRegistered: user.isBidderRegistered,
+            bidderId: bidderId,
         });
     } catch (error) {
         console.error(error.message);

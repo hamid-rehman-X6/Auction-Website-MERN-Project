@@ -6,6 +6,7 @@ const AuctionModal = ({ product, onClose, updateProduct }) => {
   const [bidValue, setBidValue] = useState(
     product.currentPrice > 0 ? product.currentPrice : product.startingPrice
   );
+  const [bidPlaced, setBidPlaced] = useState(false); // State to track if bid was successfully placed
 
   const handlePlaceBid = async () => {
     const token = sessionStorage.getItem("token");
@@ -22,13 +23,19 @@ const AuctionModal = ({ product, onClose, updateProduct }) => {
           },
         }
       );
-      console.log("Bid placed successfully:", response.data);
       updateProduct(response.data.product);
+      alert("Bid Placed Successfully");
+      // setBidPlaced(true); // Set bidPlaced to true after successful bid
       onClose(); // Close the modal after successful bid
     } catch (error) {
       console.error("Error placing bid:", error);
     }
   };
+
+  // Render nothing if bidPlaced is true
+  if (bidPlaced) {
+    return null;
+  }
 
   return (
     <div className="auction-modal">
@@ -66,7 +73,12 @@ const AuctionModal = ({ product, onClose, updateProduct }) => {
                   : product.startingPrice
               }
             />
-            <button onClick={() => setBidValue(bidValue + 1)}>Increment</button>
+            <button
+              className="auctionModal-increment-btn"
+              onClick={() => setBidValue(bidValue + 1)}
+            >
+              Increment
+            </button>
           </div>
         )}
         <button className="place-bid-button" onClick={handlePlaceBid}>

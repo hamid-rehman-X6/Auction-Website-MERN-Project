@@ -1,12 +1,18 @@
-// const mongoose = require("mongoose");
+// const mongoose = require('mongoose');
 
-// const ChatMessageSchema = new mongoose.Schema({
-//     sender: String,
-//     recipient: String,
-//     message: String,
-//     timestamp: { type: Date, default: Date.now },
+// const ChatSchema = new mongoose.Schema({
+//     roomId: String,
+//     bidderId: { type: mongoose.Schema.Types.ObjectId, ref: 'Bidder' },
+//     sellerId: { type: mongoose.Schema.Types.ObjectId, ref: 'Seller' },
+//     messages: [
+//         {
+//             senderId: { type: mongoose.Schema.Types.ObjectId, ref: 'Users' },
+//             message: String,
+//             timestamp: { type: Date, default: Date.now },
+//         },
+//     ],
 // });
 
-// const ChatMessage = mongoose.model("ChatMessage", ChatMessageSchema);
+// const Chat = mongoose.model('Chat', ChatSchema);
 
-// module.exports = ChatMessage;
+// module.exports = Chat;

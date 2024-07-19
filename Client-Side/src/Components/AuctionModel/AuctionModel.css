@@ -1,3 +1,5 @@
+/* AuctionModal.css */
+
 .auction-modal {
     position: fixed;
     z-index: 1000;
@@ -6,65 +8,115 @@
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.7);
     display: flex;
     justify-content: center;
     align-items: center;
+    animation: fadeIn 0.4s;
 }
 
 .modal-content {
-    background-color: #fefefe;
+    background-color: #fff;
     margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    width: 90%;
     max-width: 500px;
     position: relative;
-    animation: animateModal 0.4s;
+    animation: slideIn 0.4s;
 }
 
-@keyframes animateModal {
+@keyframes fadeIn {
     from {
-        top: -300px;
-        opacity: 0
+        opacity: 0;
     }
 
     to {
-        top: 0;
-        opacity: 1
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-30px);
+    }
+
+    to {
+        transform: translateY(0);
     }
 }
 
 .close-button {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
+    color: #bbb;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
     font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
 }
 
 .close-button:hover,
 .close-button:focus {
-    color: black;
+    color: #000;
     text-decoration: none;
-    cursor: pointer;
+}
+
+h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+p {
+    margin: 10px 0;
+    color: #555;
+}
+
+.auction-closed-msg {
+    color: #e74c3c;
+    font-weight: bold;
 }
 
 .bid-section {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-top: 15px;
+}
+
+.bid-section input {
+    width: 100px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.auctionModal-increment-btn {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.auctionModal-increment-btn:hover {
+    background-color: #2980b9;
 }
 
 .place-bid-button {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #2ecc71;
     padding: 10px 20px;
-    margin-top: 10px;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 .place-bid-button:hover {
-    background-color: #45a049;
+    background-color: #27ae60;
 }

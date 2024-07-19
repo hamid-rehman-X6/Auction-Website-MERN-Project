@@ -25,7 +25,7 @@ import SellerProtectedR from "./Context API/SellerProtectedR";
 import AuctionRoom from "./Pages/AuctionROOM/AuctionRoom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import ChatApp from "./Components/CHATBOT/ChatApp";
+import Payment from "./Pages/PaymentPage/Payment";
 
 // import Navbaar from "./Navbaar";
 
@@ -99,7 +99,7 @@ const App = () => {
             element={<ResetPassword />}
           />
           <Route path="/auction-Room" element={<AuctionRoom />} />
-          {/* <Route path="/chat-App" element={<ChatApp />} /> */}
+          <Route path="/payment/:productId" element={<Payment />} />
         </Routes>
 
         {renderFooter && <Footer />}

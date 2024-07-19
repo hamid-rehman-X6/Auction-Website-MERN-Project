@@ -51,3 +51,26 @@ exports.placeBid = async (req, res) => {
 
 };
 
+
+exports.auctionEnded = async (req, res) => {
+    const productId = req.params.productId;
+    console.log(productId)
+
+    try {
+        const product = await Product.findById(productId);
+        if (!product) {
+            return res.status(404).json({ error: 'Product not found' });
+        }
+
+        // Update winner only if there is at least one bid
+        if (product.currentPrice > 0) {
+            product.winner = product.highestBidder;
+            await product.save();
+        }
+
+        res.status(200).json(product);
+    } catch (error) {
+        console.error('Error updating product winner:', error);
+        res.status(500).json({ error: 'Server error' });
+    }
+};

@@ -122,19 +122,19 @@ const Productlisting = () => {
     // }
 
     // Validate auction start and end dates
-    const startDate = new Date(auctionStartDate);
-    const endDate = new Date(auctionEndDate);
-    const timeDiff = endDate.getTime() - startDate.getTime();
-    console.log(timeDiff);
-    const daysDiff = timeDiff / (1000 * 60 * 60 * 24);
-    console.log(daysDiff);
+    // const startDate = new Date(auctionStartDate);
+    // const endDate = new Date(auctionEndDate);
+    // const timeDiff = endDate.getTime() - startDate.getTime();
+    // console.log(timeDiff);
+    // const daysDiff = timeDiff / (1000 * 60 * 60 * 24);
+    // console.log(daysDiff);
 
-    if (daysDiff < 0 || daysDiff > 14) {
-      toast.error("Auction duration must be between 0 and 14 days.", {
-        position: "top-right",
-      });
-      return;
-    }
+    // if (daysDiff < 0 || daysDiff > 14) {
+    //   toast.error("Auction duration must be between 0 and 14 days.", {
+    //     position: "top-right",
+    //   });
+    //   return;
+    // }
 
     try {
       const response = await axios.post(
@@ -224,7 +224,7 @@ const Productlisting = () => {
           <label>
             Auction Start Date:
             <input
-              type="date"
+              type="datetime-local"
               name="auctionStartDate"
               value={Product.auctionStartDate}
               onChange={handlechange}
@@ -235,7 +235,7 @@ const Productlisting = () => {
           <label>
             Auction End Date:
             <input
-              type="date"
+              type="datetime-local"
               name="auctionEndDate"
               value={Product.auctionEndDate}
               onChange={handlechange}

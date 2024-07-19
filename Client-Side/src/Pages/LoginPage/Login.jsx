@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import LoginContext from "../../Context API/CreateContext";
 
 const Login = () => {
-  const { setIsLoggedIn, setIsSellerRegistered, login } =
+  const { setIsLoggedIn, setIsSellerRegistered, setIsBidderRegistered, login } =
     useContext(LoginContext);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
@@ -38,6 +38,8 @@ const Login = () => {
         role: response.data.role,
         token: response.data.token,
         isSellerRegistered: response.data.isSellerRegistered,
+        isBidderRegistered: response.data.isBidderRegistered, // Assuming this is returned from the backend
+        bidderId: response.data.bidderId,
       };
       console.log(userData);
 
@@ -46,6 +48,10 @@ const Login = () => {
       sessionStorage.setItem("userId", response.data.userId);
       sessionStorage.setItem("token", response.data.token); // Store JWT token
 
+      if (response.data.role === "Bidder") {
+        sessionStorage.setItem("bidderId", response.data.bidderId); // Store bidder ID for Bidder role
+      }
+
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("email", values.email);
 
@@ -53,6 +59,7 @@ const Login = () => {
 
       setIsLoggedIn(true);
       setIsSellerRegistered(response.data.isSellerRegistered);
+      setIsBidderRegistered(response.data.isBidderRegistered);
 
       if (
         response.data.role === "Seller" &&

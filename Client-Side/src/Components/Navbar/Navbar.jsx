@@ -35,10 +35,10 @@ function Navbar() {
 
       sessionStorage.removeItem("userRole");
       sessionStorage.removeItem("userId");
-      sessionStorage.removeItem("token"); // Remove JWT token
+      sessionStorage.removeItem("token"); // Remove JWT tokennav
 
       // for bidder
-      localStorage.removeItem("isBidderRegistered");
+      // localStorage.removeItem("isBidderRegistered");
       navigate("/home");
     } else {
       navigate("/login");
