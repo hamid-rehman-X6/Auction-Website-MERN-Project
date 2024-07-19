@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Payment.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ConfirmationModal from "../../Components/ConfirmModel/Confirmation";
 
 const Payment = () => {
   const { productId } = useParams();
+  const navigate = useNavigate();
   const [paymentDetails, setPaymentDetails] = useState({
     name: "",
     address: "",
@@ -34,6 +35,7 @@ const Payment = () => {
     try {
       // Fake backend interaction
       console.log("Payment details submitted: ", paymentDetails);
+      sessionStorage.setItem("Payment Detail:", JSON.stringify(paymentDetails));
       // alert("Payment processed successfully (simulation).");
       setIsModalOpen(true);
     } catch (error) {
@@ -96,6 +98,11 @@ const Payment = () => {
 
     setErrors(errors);
     return valid;
+  };
+
+  const closeModelConfirmation = () => {
+    setIsModalOpen(false);
+    navigate("/");
   };
 
   return (
@@ -234,7 +241,7 @@ const Payment = () => {
       </form>
       <ConfirmationModal
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={closeModelConfirmation}
       />
     </div>
   );

@@ -68,6 +68,7 @@ const AuctionRoom = () => {
     console.log(userRole);
     if (!token) {
       console.error("No token found");
+      toast.error("No Token found", { position: "top-right" });
       return;
     }
 

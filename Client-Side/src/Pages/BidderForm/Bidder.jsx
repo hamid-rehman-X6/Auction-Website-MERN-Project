@@ -38,7 +38,7 @@ const Bidder = () => {
         }
       );
       console.log(response);
-      toast.success(response.data.msg, { position: "bottom-right" });
+      toast.success(response.data.msg, { position: "top-right" });
 
       const bidderId = response.data.bidderId; // Extract the bidder ID from the response
       sessionStorage.setItem("bidderId", bidderId); // Store the bidder ID in session storage
@@ -89,6 +89,7 @@ const Bidder = () => {
                     name="firstName"
                     placeholder="Hamid"
                     className="custom-input-S"
+                    autocomplete="off"
                   />
 
                   {errors.firstName && touched.firstName && (
@@ -105,6 +106,7 @@ const Bidder = () => {
                     name="lastName"
                     placeholder="Rehman"
                     className="custom-input-S"
+                    autocomplete="off"
                   />
                   {errors.lastName && touched.lastName && (
                     <div className="err">{errors.lastName}</div>
@@ -123,6 +125,7 @@ const Bidder = () => {
                     name="address"
                     placeholder="123 Fake Street"
                     className="custom-input-S"
+                    autocomplete="off"
                   />
                   {errors.address && touched.address && (
                     <div className="err">{errors.address}</div>
@@ -141,6 +144,7 @@ const Bidder = () => {
                     name="phoneNumber"
                     placeholder="+92-xxx-xxxxxxx"
                     className="custom-input-S"
+                    autocomplete="off"
                   />
                   {errors.phoneNumber && touched.phoneNumber && (
                     <div className="err">{errors.phoneNumber}</div>
@@ -159,6 +163,7 @@ const Bidder = () => {
                     name="CNIC"
                     placeholder="xxxxx-xxxxxxx-x"
                     className="custom-input-S"
+                    autocomplete="off"
                   />
                   {errors.CNIC && touched.CNIC && (
                     <div className="err">{errors.CNIC}</div>

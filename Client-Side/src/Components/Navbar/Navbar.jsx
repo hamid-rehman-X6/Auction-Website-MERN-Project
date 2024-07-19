@@ -52,7 +52,7 @@ function Navbar() {
       </h3>
       <nav ref={navRef}>
         <Link to="./home">Home</Link>
-        <Link to="./auction">Auction</Link>
+        <Link to="./auction-Room">Auction</Link>
         <Link to="./product-Page">Products</Link>
         <Link to="./contact">Contact</Link>
         {isLoggedIn && (

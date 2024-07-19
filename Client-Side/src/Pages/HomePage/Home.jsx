@@ -68,11 +68,12 @@ const Home = () => {
           New auctions added daily.
         </p>
       </div>
-
       <section>
-        <h3 className="section-h3">Featured Auction Items</h3>
+        <h3 className="section-h3">Featured Items</h3>
         {loading ? (
           <div id="spinner-element"></div>
+        ) : latestProducts.length === 0 ? (
+          <p className="home-p-tag-for-no-product"> No product for display. </p>
         ) : (
           <div className="product-grid-for-homepage">
             {latestProducts.map((product) => (

@@ -106,6 +106,13 @@
     background-color: #fff;
 }
 
+section .home-p-tag-for-no-product {
+    font-size: 22px;
+    text-align: left;
+    margin-left: 7%;
+    color: black;
+}
+
 /* CSS for larger screens */
 @media (min-width: 1200px) {
     .homepage-container {

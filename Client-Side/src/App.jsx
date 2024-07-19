@@ -55,6 +55,7 @@ const App = () => {
 
   return (
     <>
+      <ToastContainer />
       <StateLoginContext>
         {renderNavbar && <Navbar />}
         <Routes>
@@ -104,7 +105,6 @@ const App = () => {
 
         {renderFooter && <Footer />}
       </StateLoginContext>
-      <ToastContainer />
     </>
   );
 };
