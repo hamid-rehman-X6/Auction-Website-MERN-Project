@@ -125,8 +125,31 @@ const AuctionRoom = () => {
     return true;
   });
 
-  const handleProceed = (productId) => {
-    navigate(`/payment/${productId}`);
+  const handleProceed = async (productId) => {
+    const token = sessionStorage.getItem("token");
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/verifyWinningBidder/${productId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.data.isWinner) {
+        navigate(`/payment/${productId}`);
+      } else {
+        toast.error("Only the winning bidder can proceed to payment", {
+          position: "top-right",
+        });
+      }
+    } catch (error) {
+      console.error("Error verifying winning bidder:", error);
+      toast.error("Error verifying winning bidder", {
+        position: "top-right",
+      });
+    }
   };
   return (
     <div className="auction-room-container">
@@ -189,7 +212,11 @@ const AuctionRoom = () => {
                         {product.highestBidder && (
                           <button
                             className="proceed-button"
-                            onClick={() => handleProceed(product._id)}
+                            // onClick={() => handleProceed(product._id)}
+                            onClick={(e) => {
+                              e.stopPropagation(); // Prevent triggering parent div's onClick
+                              handleProceed(product._id);
+                            }}
                           >
                             Proceed to Payment
                           </button>

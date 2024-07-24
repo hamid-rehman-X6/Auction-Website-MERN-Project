@@ -15,6 +15,7 @@ const bidRoutes = require("./Routes/bidRoutes");
 // const chatRoutes = require("./Routes/chatRoutes")
 // const chatControllers = require("./Controllers/chatController")
 const paymentRoutes = require("./Routes/paymentRoutes");
+const paymentDetailRoutes = require("./Routes/paymentDetailRoutes")
 
 dotenv.config();
 
@@ -32,6 +33,7 @@ app.use(auctionRoutes);
 app.use(bidRoutes);
 // app.use(chatRoutes);
 app.use(paymentRoutes);
+app.use(paymentDetailRoutes)
 
 // Connect to MongoDB and start the server
 const PORT = process.env.PORT || 5000;

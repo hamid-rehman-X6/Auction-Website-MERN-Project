@@ -33,11 +33,20 @@ const Payment = () => {
       return;
     }
     try {
-      // Fake backend interaction
-      console.log("Payment details submitted: ", paymentDetails);
-      sessionStorage.setItem("Payment Detail:", JSON.stringify(paymentDetails));
-      // alert("Payment processed successfully (simulation).");
+      const token = sessionStorage.getItem("token");
+      const response = await axios.post(
+        "http://localhost:5000/payments",
+        paymentDetails,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("Payment details submitted: ", response.data);
+
       setIsModalOpen(true);
+      sessionStorage.setItem("Payment Detail:", JSON.stringify(paymentDetails));
     } catch (error) {
       console.error("Error processing payment:", error);
     }
@@ -110,6 +119,7 @@ const Payment = () => {
       <h2 className="stripe-heading-h2">
         Stripe Payment for Product ID: <span># {productId}</span>
       </h2>
+
       <form onSubmit={handleSubmit}>
         <div className="payment-form-container">
           <div className="left-container">

@@ -56,7 +56,6 @@ exports.login = async (req, res) => {
         }
 
         const isPasswordValid = await bcrypt.compare(password, user.password);
-        console.log("Password valid: ", isPasswordValid);
         if (!isPasswordValid) {
             return res.status(401).json({ msg: "Incorrect Password! Try Again" });
         }
@@ -66,7 +65,6 @@ exports.login = async (req, res) => {
 
         if (user.role === "Bidder") {
             const bidder = await BidderForm.findOne({ user: user._id });
-            console.log(bidder);
             if (bidder) {
                 bidderId = bidder._id;
             }
@@ -102,10 +100,7 @@ exports.getAllUsers = async (req, res) => {
 exports.deleteUsers = async (req, res) => {
     try {
         const userId = req.params.id;
-        console.log('Deleting user with ID:', userId);
-
         const user = await UserModel.findById(userId);
-
 
         if (!user) {
             return res.status(404).send({ message: 'User not found' });
@@ -123,9 +118,6 @@ exports.deleteUsers = async (req, res) => {
             await Products.deleteMany({ userId: userId });
             await BidderForm.deleteOne({ user: userId });
         }
-
-        console.log("User and their related data deleted successfully");
-
 
         res.status(200).send({ message: 'User and their related data deleted successfully' });
     } catch (err) {

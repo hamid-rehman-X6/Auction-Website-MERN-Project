@@ -28,7 +28,7 @@ const bidderSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Users",
     required: true
-  }
+  },
 
 })
 

@@ -115,13 +115,13 @@ exports.placeProductForAuction = async (req, res) => {
     try {
         const product = await Product.findById(req.params.id);
         if (!product) {
-            console.log(`Product with id ${req.params.id} not found`);
+            // console.log(`Product with id ${req.params.id} not found`);
             return res.status(404).json({ message: 'Product not found' });
         }
 
         product.isAuctioned = true;
         await product.save();
-        console.log(`Product with id ${req.params.id} updated to auctioned`);
+        // console.log(`Product with id ${req.params.id} updated to auctioned`);
 
         res.status(200).json({ product });
     } catch (error) {
@@ -133,7 +133,7 @@ exports.placeProductForAuction = async (req, res) => {
 exports.getAuctionedProduct = async (req, res) => {
     try {
         const products = await Product.find({ isAuctioned: true });
-        console.log("Auctioned Products: ", products);
+        // console.log("Auctioned Products: ", products);
         res.json({ products });
     } catch (error) {
         console.error('Error fetching auctioned products:', error);

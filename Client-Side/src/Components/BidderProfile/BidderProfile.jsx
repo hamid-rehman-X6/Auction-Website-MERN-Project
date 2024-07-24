@@ -8,6 +8,7 @@ function BidderProfile({ email }) {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showBidHistoryModal, setShowBidHistoryModal] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [notifications, setNotifications] = useState([]); // State to store notifications
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -18,14 +19,37 @@ function BidderProfile({ email }) {
         return;
       }
 
+      const userId = sessionStorage.getItem("userId");
+      if (!userId) {
+        alert("Userid is missing in sessionstorage");
+      }
+
       try {
+        // Fetch products
         const response = await axios.get(
           `http://localhost:5000/bids/bidder/${bidderId}`
         );
         setProducts(response.data.products);
-        setLoading(false);
+
+        // Fetch notifications
+        const notificationsResponse = await axios.get(
+          `http://localhost:5000/${userId}/notifications`
+        );
+
+        console.log("Notifications Response:", notificationsResponse);
+
+        if (notificationsResponse.status === 200) {
+          setNotifications(notificationsResponse.data.notifications || []);
+        } else {
+          console.warn(
+            "Failed to fetch notifications:",
+            notificationsResponse.data.message
+          );
+        }
       } catch (error) {
-        console.error("Error fetching products:", error);
+        console.error("Error fetching products or notifications:", error);
+      } finally {
+        setLoading(false); // Ensure loading state is updated correctly
       }
     };
 
@@ -62,10 +86,6 @@ function BidderProfile({ email }) {
                   const { product, bids } = productData;
                   const currentBidderId = sessionStorage.getItem("bidderId");
 
-                  // console.log("Product ID:", product._id);
-                  // console.log("Current Bidder ID:", currentBidderId);
-                  // console.log("Highest Bidder ID:", product.highestBidder);
-
                   const isWinner =
                     product.daysLeft <= 0 &&
                     product.highestBidder === currentBidderId;
@@ -101,6 +121,21 @@ function BidderProfile({ email }) {
           </div>
         </div>
       )}
+      <div className="user-notifications">
+        <h2>Notifications</h2>
+        {Array.isArray(notifications) && notifications.length > 0 ? (
+          notifications.map((notification, index) => (
+            <div key={index} className="notification-item">
+              <p>{notification.message}</p>
+              <span className="notification-date">
+                {new Date(notification.date).toLocaleString()}
+              </span>
+            </div>
+          ))
+        ) : (
+          <p>No notifications available</p>
+        )}
+      </div>
       {showBidHistoryModal && (
         <BidHistoryModel
           product={selectedProduct.product}

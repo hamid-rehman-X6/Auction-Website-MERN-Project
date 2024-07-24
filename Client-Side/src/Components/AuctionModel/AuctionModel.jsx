@@ -24,6 +24,7 @@ const AuctionModal = ({ product, onClose, updateProduct }) => {
         }
       );
       updateProduct(response.data.product);
+      console.log(response.data.product);
       alert("Bid Placed Successfully");
       // setBidPlaced(true); // Set bidPlaced to true after successful bid
       onClose(); // Close the modal after successful bid
@@ -53,6 +54,9 @@ const AuctionModal = ({ product, onClose, updateProduct }) => {
         <p>
           <strong>Highest Bidder Name:</strong>{" "}
           {product.highestBidder ? product.highestBidder : "None"}
+        </p>
+        <p>
+          <strong>Highest Bidder Id: {product.highestBidderId}</strong>
         </p>
         <p>
           <strong>Current Highest Bid Value:</strong> {product.currentPrice}

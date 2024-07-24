@@ -7,7 +7,7 @@ exports.placeBid = async (req, res) => {
 
     const { productId, bidValue } = req.body;
     const userID = req.user._id;
-    console.log("UserID: ", userID);
+    // console.log("UserID: ", userID);
 
 
     try {
@@ -41,6 +41,7 @@ exports.placeBid = async (req, res) => {
         // Update the product's current price and highest bidder
         product.currentPrice = bidValue;
         product.highestBidder = `${bidder.firstName} ${bidder.lastName}`;
+        product.highestBidderId = userID; // Store the ID of the highest bidder
         await product.save();
 
         res.json({ message: "Bid placed successfully", product });
@@ -54,7 +55,7 @@ exports.placeBid = async (req, res) => {
 
 exports.auctionEnded = async (req, res) => {
     const productId = req.params.productId;
-    console.log(productId)
+    // console.log(productId)
 
     try {
         const product = await Product.findById(productId);
@@ -63,10 +64,10 @@ exports.auctionEnded = async (req, res) => {
         }
 
         // Update winner only if there is at least one bid
-        if (product.currentPrice > 0) {
-            product.winner = product.highestBidder;
-            await product.save();
-        }
+        // if (product.currentPrice > 0) {
+        //     product.winner = product.highestBidder;
+        //     await product.save();
+        // }
 
         res.status(200).json(product);
     } catch (error) {

@@ -80,16 +80,17 @@ const productSchema = new mongoose.Schema({
     },
     highestBidder: {
         type: String,
-        // ref: 'Users',
+        default: null
+    },
+
+    highestBidderId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Users',
         default: null
     },
     isAuctioned: {
         type: Boolean,
         default: false
-    },
-    winner: {
-        type: String,
-        default: null
     }
 });
 

@@ -27,7 +27,21 @@ const UserSchema = new mongoose.Schema({
   isBidderRegistered: {
     type: Boolean,
     default: false,
-  }
+  },
+  notifications: [{  // Adding notifications field
+    type: {
+      type: String,  // Type of notification
+      required: true
+    },
+    message: {
+      type: String,  // Notification message
+      required: true
+    },
+    date: {
+      type: Date,    // Date of notification
+      default: Date.now
+    }
+  }]
 })
 
 
@@ -35,8 +49,3 @@ const UserSchema = new mongoose.Schema({
 const UserModel = mongoose.model("Users", UserSchema);
 
 module.exports = UserModel;
-
-
-// UserSchema.methods.matchPassword = async function (password) {
-//   return await bcrypt.compare(password, this.password);
-// };
